@@ -39,7 +39,7 @@
         <div class="w-3/5 space-y-10">
 
           <section>
-            <h1 class="text-6xl font-semibold text-sage mb-5">
+            <h1 class="text-6xl leading-tight text-sage mb-5">
               About Me
             </h1>
 
@@ -149,7 +149,7 @@
         <div class="w-3/5 space-y-10">
 
           <section>
-            <h1 class="text-4xl font-semibold text-sage mb-5">
+            <h1 class="text-4xl text-sage mb-5">
               Beyond Coding
             </h1>
 
