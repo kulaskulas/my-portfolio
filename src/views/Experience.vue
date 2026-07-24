@@ -205,6 +205,65 @@
   import { Icon } from "@iconify/vue";
 const yearsExperience = ref([
   {
+    year: 'April 2021',
+    expanded: false,
+    children: [
+      {
+        label: 'Company',
+        file: 'company.md',
+        value: {
+          name: 'MNLeistung',
+          industry: 'Software Development',
+          location: 'Philippines',
+          website: 'https://example.com'
+        }
+      },
+      {
+        label: 'Position',
+        file: 'position.md',
+        value: {
+          title: 'PHP Developer',
+          team: 'Web Development',
+          type: 'Full-time'
+        }
+      },
+      {
+        label: 'Duration',
+        file: 'duration.md',
+        value: {
+          period: '2021 - 2023',
+          length: '2+ Years'
+        }
+      },
+      {
+        label: 'Responsibilities',
+        file: 'responsibilities.md',
+        value: [
+          'Developed and maintained a Construction Bidding System tailored to client business requirements.',
+          'Led the development of a Hospital Management System from planning through implementation.',
+          'Worked directly with clients by conducting on-site meetings and requirements gathering for various projects.',
+          'Presented technical proposals, system architecture, and implementation plans to stakeholders.'
+        ]
+      },
+      {
+        label: 'Technologies',
+        file: 'tech-stack.json',
+        value: [
+          'Laravel',
+          'PHP',
+          'MySQL',
+          'JavaScript',
+          'jQuery',
+          'Bootstrap',
+          'Git',
+          'REST API',
+          'AlpineJS',
+          'CSS'
+        ]
+      }
+    ]
+  },
+  {
     year: 'August 2019',
     expanded: true,
     children: [
@@ -263,64 +322,5 @@ const yearsExperience = ref([
       }
     ]
   },
-  {
-    year: 'April 2021',
-    expanded: false,
-    children: [
-      {
-        label: 'Company',
-        file: 'company.md',
-        value: {
-          name: 'MNLeistung',
-          industry: 'Software Development',
-          location: 'Philippines',
-          website: 'https://example.com'
-        }
-      },
-      {
-        label: 'Position',
-        file: 'position.md',
-        value: {
-          title: 'PHP Developer',
-          team: 'Web Development',
-          type: 'Full-time'
-        }
-      },
-      {
-        label: 'Duration',
-        file: 'duration.md',
-        value: {
-          period: '2021 - 2023',
-          length: '2+ Years'
-        }
-      },
-      {
-        label: 'Responsibilities',
-        file: 'responsibilities.md',
-        value: [
-          'Developed and maintained a Construction Bidding System tailored to client business requirements.',
-          'Led the development of a Hospital Management System from planning through implementation.',
-          'Worked directly with clients by conducting on-site meetings and requirements gathering for various projects.',
-          'Presented technical proposals, system architecture, and implementation plans to stakeholders.'
-        ]
-      },
-      {
-        label: 'Technologies',
-        file: 'tech-stack.json',
-        value: [
-          'Laravel',
-          'PHP',
-          'MySQL',
-          'JavaScript',
-          'jQuery',
-          'Bootstrap',
-          'Git',
-          'REST API',
-          'AlpineJS',
-          'CSS'
-        ]
-      }
-    ]
-  }
 ])
 </script>
