@@ -57,11 +57,11 @@
                 <!-- Left Label -->
                 <div class="relative pl-6 py-3">
                   <span
-                    class="absolute left-0 top-1/2 w-full border-t border-steel/40"
+                    class="absolute left-0 top-1/2 w-4 border-t border-steel/40"
                   ></span>
 
                   <p class="text-teal font-medium">
-                    {{ child.name }}
+                    {{ child.role }}
                   </p>
                 </div>
 
@@ -393,6 +393,7 @@
       children: [
         {
           label: 'Project',
+          role: 'Fullstack Developer',
           file: 'project.md',
           value: {
             name: 'Portfolio Builder',
@@ -445,6 +446,7 @@
       children: [
         {
           label: 'Project',
+          role: 'Fullstack Developer',
           file: 'project.md',
           value: {
             name: 'Revolving Fund',
@@ -503,6 +505,7 @@
       children: [
         {
           label: 'Websites',
+          role: 'Frontend Developer',
           file: 'websites.json',
           value: [
             {
@@ -557,114 +560,254 @@
         },
       ]
     },
+
+
     {
-      title: '2023 - Present',
+      title: 'Construction Bidding System',
       type: 'work',
       expanded: false,
       children: [
         {
-          label: 'Projects',
-          file: 'projects.json',
+          label: 'Project',
+          role: 'Fullstack Developer',
+          file: 'project.md',
+          value: {
+            name: 'Construction Bidding System',
+            status: '</>',
+            period: '</>'
+          }
+        },
+        {
+          label: 'Overview',
+          file: 'overview.md',
+          value: 'Built a web-based bidding platform that manages project proposals, contractor submissions, evaluation processes, and bidding workflows.'
+        },
+        {
+          label: 'Features',
+          file: 'features.md',
           value: [
-            {
-              name: 'Omnichannel Platform',
-              description: 'Part of the development team building an omnichannel platform that integrates multiple communication channels into a unified customer interaction system.',
-              role: 'Software Engineer',
-              technologies: [
-                'Laravel',
-                'Vue.js',
-                'API Integration',
-                'Real-time Data',
-                'MySQL'
-              ]
-            },
-            {
-              name: 'Unified Portal',
-              description: 'Contributed to the development of a unified portal that integrates multiple communication channels.',
-              role: 'Software Engineer',
-              technologies: [
-                'Laravel',
-                'Vue.js',
-                'API Integration',
-                'MySQL'
-              ]
-            }
+            '</>'
           ]
-        }
+        },
+        {
+          label: 'Technologies',
+          file: 'tech-stack.json',
+          value: [
+            'Laravel',
+            'Jquery',
+            'Websockets',
+            'Real-time Data',
+            'MySQL',
+            'API Integration'
+          ]
+        },
       ]
     },
+
     {
-      title: '2021 - 2023',
+      title: 'Hospital Management System',
       type: 'work',
       expanded: false,
       children: [
         {
-          label: 'Projects',
-          file: 'projects.json',
+          label: 'Project',
+          role: 'Fullstack Developer',
+          file: 'project.md',
+          value: {
+            name: 'Hospital Management System',
+            status: '</>',
+            period: '</>'
+          }
+        },
+        {
+          label: 'Overview',
+          file: 'overview.md',
+          value: 'Developed and maintained a hospital system supporting healthcare workflows, data management, and operational processes.'
+        },
+        {
+          label: 'Features',
+          file: 'features.md',
           value: [
-            {
-              name: 'Construction Bidding System',
-              description: 'Built a web-based bidding platform that manages project proposals, contractor submissions, evaluation processes, and bidding workflows.',
-              role: 'Fullstack Developer',
-              technologies: [
-                'Laravel',
-                'Jquery',
-                'Websockets',
-                'Real-time Data',
-                'MySQL',
-                'API Integration'
-              ]
-            },
-            {
-              name: 'Hospital Management System',
-              description: 'Developed and maintained a hospital system supporting healthcare workflows, data management, and operational processes.',
-              role: 'Fullstack Developer',
-              technologies: [
-                'Laravel',
-                'Websockets',
-                'Real-time Data',
-                'MySQL',
-                'Jquery',
-                'API Integration'
-              ]
-            }
+            '</>'
           ]
-        }
+        },
+        {
+          label: 'Technologies',
+          file: 'tech-stack.json',
+          value: [
+            'Laravel',
+            'Websockets',
+            'Real-time Data',
+            'MySQL',
+            'Jquery',
+            'API Integration'
+          ]
+        },
       ]
     },
+    
+
     {
-      title: '2019 - 2021',
+      title: 'Hotel Management System Migration',
       type: 'work',
       expanded: false,
       children: [
         {
-          label: 'Projects',
-          file: 'projects.json',
+          label: 'Project',
+          role: 'Fullstack Developer',
+          file: 'project.md',
+          value: {
+            name: 'Unified Portal',
+            status: '</>',
+            period: '</>'
+          }
+        },
+        {
+          label: 'Overview',
+          file: 'overview.md',
+          value: 'Migrated an existing hotel management system from legacy PHP into Laravel, improving code maintainability, application structure, and scalability. Implemented new features and optimized existing workflows for better performance.'
+        },
+        {
+          label: 'Features',
+          file: 'features.md',
           value: [
-            {
-              name: 'Hotel Management System Migration',
-              description: 'Migrated an existing hotel management system from legacy PHP into Laravel, improving code maintainability, application structure, and scalability. Implemented new features and optimized existing workflows for better performance.',
-              role: 'Fullstack Developer',
-              technologies: [
-                'Laravel',
-                'PHP',
-                'MySQL',
-                'JavaScript'
-              ]
-            },
-            {
-              name: 'Clinic Management System',
-              description: 'Developed a web-based clinic management system to streamline patient records, appointments, and administrative workflows. Built features to improve daily operations and data management.',
-              role: 'Fullstack Developer',
-              technologies: [
-                'Laravel',
-                'PHP',
-                'MySQL',
-                'Bootstrap'
-              ]
-            }
+            '</>'
           ]
-        }
+        },
+        {
+          label: 'Technologies',
+          file: 'tech-stack.json',
+          value: [
+            'Laravel',
+            'Bootstrap',
+            'CSS',
+            'MySQL',
+            'Jquery'
+          ]
+        },
+      ]
+    },
+
+    {
+      title: 'Clinic Management System',
+      type: 'work',
+      expanded: false,
+      children: [
+        {
+          label: 'Project',
+          role: 'Fullstack Developer',
+          file: 'project.md',
+          value: {
+            name: 'Unified Portal',
+            status: '</>',
+            period: '</>'
+          }
+        },
+        {
+          label: 'Overview',
+          file: 'overview.md',
+          value: 'Developed a web-based clinic management system to streamline patient records, appointments, and administrative workflows. Built features to improve daily operations and data management.'
+        },
+        {
+          label: 'Features',
+          file: 'features.md',
+          value: [
+            '</>'
+          ]
+        },
+        {
+          label: 'Technologies',
+          file: 'tech-stack.json',
+          value: [
+            'Laravel',
+            'Jquery',
+            'MySQL',
+            'CSS',
+            'Bootstrap'
+          ]
+        },
+      ]
+    },
+
+    {
+      title: 'Unified Portal',
+      type: 'work',
+      expanded: false,
+      children: [
+        {
+          label: 'Project',
+          role: 'Frontend Developer',
+          file: 'project.md',
+          value: {
+            name: 'Unified Portal',
+            status: '</>',
+            period: '</>'
+          }
+        },
+        {
+          label: 'Overview',
+          file: 'overview.md',
+          value: 'Contributed to the development of a unified portal that integrates multiple communication channels.'
+        },
+        {
+          label: 'Features',
+          file: 'features.md',
+          value: [
+            '</>'
+          ]
+        },
+        {
+          label: 'Technologies',
+          file: 'tech-stack.json',
+          value: [
+            'Laravel',
+            'Vue.js',
+            'API Integration',
+            'MySQL',
+            'More ...'
+          ]
+        },
+      ]
+    },
+
+    {
+      title: 'Omnichannel Platform',
+      type: 'work',
+      expanded: false,
+      children: [
+        {
+          label: 'Project',
+          role: 'Frontend Developer',
+          file: 'project.md',
+          value: {
+            name: 'Omnichannel Platform',
+            status: '</>',
+            period: '</>'
+          }
+        },
+        {
+          label: 'Overview',
+          file: 'overview.md',
+          value: 'Part of the development team building an omnichannel platform that integrates multiple communication channels into a unified customer interaction system.'
+        },
+        {
+          label: 'Features',
+          file: 'features.md',
+          value: [
+            '</>'
+          ]
+        },
+        {
+          label: 'Technologies',
+          file: 'tech-stack.json',
+          value: [
+            'Laravel',
+            'Vue.js',
+            'API Integration',
+            'MySQL',
+            'More ...'
+          ]
+        },
       ]
     },
   ])
