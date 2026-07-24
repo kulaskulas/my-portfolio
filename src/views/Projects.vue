@@ -277,6 +277,80 @@
                       </div>
                     </template>
 
+                    <!-- Projects -->
+                    <template v-else-if="child.label === 'Projects'">
+                      <div>
+                        <h3 class="text-orchid text-xl mb-6">
+                          Projects
+                        </h3>
+
+                        <div class="space-y-6">
+
+                          <div
+                            v-for="(project, index) in child.value"
+                            :key="index"
+                            class="rounded-lg border border-steel/30 bg-topbar overflow-hidden"
+                          >
+
+                            <!-- Project Header -->
+                            <div class="px-5 py-4 border-b border-steel/30">
+                              <h4 class="text-sage text-lg font-medium">
+                                {{ project.name }}
+                              </h4>
+
+                              <p class="text-white mt-2 leading-relaxed">
+                                {{ project.description }}
+                              </p>
+                            </div>
+
+
+                            <!-- Project Details -->
+                            <div class="p-5 space-y-4">
+
+                              <!-- Role -->
+                              <div v-if="project.role">
+                                <span class="text-keyword">
+                                  Role:
+                                </span>
+
+                                <span class="text-sage ml-2">
+                                  {{ project.role }}
+                                </span>
+                              </div>
+
+
+                              <!-- Technologies -->
+                              <div v-if="project.technologies?.length">
+
+                                <h5 class="text-orchid mb-3">
+                                  Technologies
+                                </h5>
+
+                                <div class="flex flex-wrap gap-2">
+
+                                  <span
+                                    v-for="(tech, idx) in project.technologies"
+                                    :key="idx"
+                                    class="px-3 py-1 rounded-md 
+                                    bg-charcoal border border-steel/30 
+                                    text-keyword text-sm"
+                                  >
+                                    {{ tech }}
+                                  </span>
+
+                                </div>
+
+                              </div>
+
+                            </div>
+
+                          </div>
+
+                        </div>
+
+                      </div>
+                    </template>
+
                     <!-- Fallback -->
                     <template v-else>
                       <p class="text-sage">
@@ -423,80 +497,175 @@
       ]
     },
     {
-  title: 'Static Websites',
-  type: 'personal',
-  expanded: true,
-  children: [
-    // {
-    //   label: 'Collection',
-    //   file: 'collection.md',
-    //   value: {
-    //     name: 'Static Websites Collection',
-    //     status: 'Completed',
-    //     period: '2019 - 2021',
-    //     total: 3
-    //   }
-    // },
-    // {
-    //   label: 'Overview',
-    //   file: 'overview.md',
-    //   value: 'A collection of responsive static websites built for personal practice and clients. Each project focuses on clean UI, responsive layouts, and modern web design.'
-    // },
+      title: 'Static Websites',
+      type: 'personal',
+      expanded: false,
+      children: [
+        {
+          label: 'Websites',
+          file: 'websites.json',
+          value: [
+            {
+              name: 'Club Laiya',
+              description: 'A responsive resort website featuring accommodations, amenities, galleries, and booking information.',
+              github: 'https://kulaskulas.github.io/club-laiya-static-website',
+              technologies: [
+                'HTML5',
+                'CSS3',
+                'JavaScript',
+                'Bootstrap',
+                'jQuery'
+              ],
+              screenshots: [
+                image('portfolio/static_website/club_laiya/home.png'),
+                // image('portfolio/static/club_laiya/2.png')
+              ]
+            },
+            {
+              name: 'Aquaria',
+              description: 'A responsive resort website designed to showcase accommodations, amenities, and resort services with an engaging visual experience.',
+              live: 'https://username.github.io/restaurant',
+              github: 'https://kulaskulas.github.io/aquaria-static-website/',
+              technologies: [
+                'HTML5',
+                'CSS3',
+                'JavaScript',
+                'Bootstrap',
+                'jQuery'
+              ],
+              screenshots: [
+                image('portfolio/static_website/aquaria/home.png'),
+              ]
+            },
+            {
+              name: 'Aqua',
+              description: 'A responsive resort website designed to showcase accommodations, amenities, and services through a modern and visually engaging interface.',
+              live: 'https://username.github.io/construction',
+              github: 'https://kulaskulas.github.io/aqua-static-website/',
+              technologies: [
+                'HTML5',
+                'CSS3',
+                'JavaScript',
+                'Bootstrap',
+                'jQuery'
+              ],
+              screenshots: [
+                image('portfolio/static_website/aqua/home.png'),
+              ]
+            }
+          ]
+        },
+      ]
+    },
     {
-      label: 'Websites',
-      file: 'websites.json',
-      value: [
+      title: '2023 - Present',
+      type: 'work',
+      expanded: false,
+      children: [
         {
-          name: 'Club Laiya',
-          description: 'A responsive resort website featuring accommodations, amenities, galleries, and booking information.',
-          github: 'https://kulaskulas.github.io/club-laiya-static-website',
-          technologies: [
-            'HTML5',
-            'CSS3',
-            'JavaScript',
-            'Bootstrap',
-            'jQuery'
-          ],
-          screenshots: [
-            image('portfolio/static_website/club_laiya/home.png'),
-            // image('portfolio/static/club_laiya/2.png')
-          ]
-        },
-        {
-          name: 'Aquaria',
-          description: 'A responsive resort website designed to showcase accommodations, amenities, and resort services with an engaging visual experience.',
-          live: 'https://username.github.io/restaurant',
-          github: 'https://kulaskulas.github.io/aquaria-static-website/',
-          technologies: [
-            'HTML5',
-            'CSS3',
-            'JavaScript',
-            'Bootstrap',
-            'jQuery'
-          ],
-          screenshots: [
-            image('portfolio/static_website/aquaria/home.png'),
-          ]
-        },
-        {
-          name: 'Aqua',
-          description: 'A responsive resort website designed to showcase accommodations, amenities, and services through a modern and visually engaging interface.',
-          live: 'https://username.github.io/construction',
-          github: 'https://kulaskulas.github.io/aqua-static-website/',
-          technologies: [
-            'HTML5',
-            'CSS3',
-            'JavaScript',
-            'Bootstrap',
-            'jQuery'
-          ],
-          screenshots: [
-            image('portfolio/static_website/aqua/home.png'),
+          label: 'Projects',
+          file: 'projects.json',
+          value: [
+            {
+              name: 'Omnichannel Platform',
+              description: 'Part of the development team building an omnichannel platform that integrates multiple communication channels into a unified customer interaction system.',
+              role: 'Software Engineer',
+              technologies: [
+                'Laravel',
+                'Vue.js',
+                'API Integration',
+                'Real-time Data',
+                'MySQL'
+              ]
+            },
+            {
+              name: 'Unified Portal',
+              description: 'Contributed to the development of a unified portal that integrates multiple communication channels.',
+              role: 'Software Engineer',
+              technologies: [
+                'Laravel',
+                'Vue.js',
+                'API Integration',
+                'MySQL'
+              ]
+            }
           ]
         }
       ]
     },
-  ]
-}
+    {
+      title: '2021 - 2023',
+      type: 'work',
+      expanded: false,
+      children: [
+        {
+          label: 'Projects',
+          file: 'projects.json',
+          value: [
+            {
+              name: 'Construction Bidding System',
+              description: 'Built a web-based bidding platform that manages project proposals, contractor submissions, evaluation processes, and bidding workflows.',
+              role: 'Fullstack Developer',
+              technologies: [
+                'Laravel',
+                'Jquery',
+                'Websockets',
+                'Real-time Data',
+                'MySQL',
+                'API Integration'
+              ]
+            },
+            {
+              name: 'Hospital Management System',
+              description: 'Developed and maintained a hospital system supporting healthcare workflows, data management, and operational processes.',
+              role: 'Fullstack Developer',
+              technologies: [
+                'Laravel',
+                'Websockets',
+                'Real-time Data',
+                'MySQL',
+                'Jquery',
+                'API Integration'
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      title: '2019 - 2021',
+      type: 'work',
+      expanded: false,
+      children: [
+        {
+          label: 'Projects',
+          file: 'projects.json',
+          value: [
+            {
+              name: 'Hotel Management System Migration',
+              description: 'Migrated an existing hotel management system from legacy PHP into Laravel, improving code maintainability, application structure, and scalability. Implemented new features and optimized existing workflows for better performance.',
+              role: 'Fullstack Developer',
+              technologies: [
+                'Laravel',
+                'PHP',
+                'MySQL',
+                'JavaScript'
+              ]
+            },
+            {
+              name: 'Clinic Management System',
+              description: 'Developed a web-based clinic management system to streamline patient records, appointments, and administrative workflows. Built features to improve daily operations and data management.',
+              role: 'Fullstack Developer',
+              technologies: [
+                'Laravel',
+                'PHP',
+                'MySQL',
+                'Bootstrap'
+              ]
+            }
+          ]
+        }
+      ]
+    },
   ])
 </script>
