@@ -34,7 +34,7 @@
           class="w-full rounded-md border border-topbar bg-tab
             px-4 py-2 text-white
             transition-all duration-150
-            hover:bg-nav-active
+            hover:bg-slate
             active:translate-y-px
             active:bg-sidebar
             shadow-sm 

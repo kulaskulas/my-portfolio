@@ -31,6 +31,6 @@
   const navItems = [
     { name: 'Home', href: '#', path: '/home', icon : 'vscode-icons:default-folder' },
     { name: 'About', href: '#', path: '/about', icon : 'vscode-icons:default-folder' },
-    // { name: 'Contact', href: '#', path: '/contact', isActive : false },
+    { name: 'Experience', href: '#', path: '/experience', icon : 'vscode-icons:default-folder' },
   ];
 </script>
