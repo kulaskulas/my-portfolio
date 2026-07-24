@@ -51,7 +51,7 @@
               <div
                 v-for="(child, i) in data.children"
                 :key="i"
-                class="grid grid-cols-[100px_1fr] gap-8 items-start"
+                class="grid grid-cols-[180px_1fr] gap-8 items-start"
               >
 
                 <!-- Left Label -->
@@ -60,9 +60,17 @@
                     class="absolute left-0 top-1/2 w-4 border-t border-steel/40"
                   ></span>
 
-                  <p class="text-teal font-medium">
+                  <template v-if="child.name">
+                    <p class="text-teal font-medium">
+                    {{ child.name }}
+                  </p>
+                  </template>
+                  <template v-else-if="child.role">
+                    <p class="text-teal font-medium">
                     {{ child.role }}
                   </p>
+                  </template>
+                  
                 </div>
 
                 <!-- Editor Card -->
@@ -122,6 +130,12 @@
                           >
                             {{ data.type }}
                           </span>
+                        </p>
+
+                        <p v-if="data.demo">
+                          <span class="text-keyword">Demo:</span>
+
+                          <a :href="data.demo" class="px-2 py-1 ">{{ data.demo }}</a>
                         </p>
                       </div>
                     </template>
@@ -200,79 +214,6 @@
                               class="w-full h-full object-cover hover:scale-105 transition-transform duration-300 cursor-pointer"
                             />
                           </div>
-                        </div>
-                      </div>
-                    </template>
-
-                    <!-- Websites -->
-                    <template v-else-if="child.label === 'Websites'">
-                      <div>
-                        <h3 class="text-orchid text-xl mb-6">
-                          Websites
-                        </h3>
-
-                        <div
-                          v-for="(website, index) in child.value"
-                          :key="index"
-                          class="mb-8 rounded-lg border border-steel/30 bg-topbar overflow-hidden"
-                        >
-
-                          <!-- Header -->
-                          <div class="px-5 py-3 border-b border-steel/30">
-                            <h4 class="text-lg text-sage font-medium">
-                              {{ website.name }}
-                            </h4>
-
-                            <p class="text-white mt-2">
-                              {{ website.description }}
-                            </p>
-                          </div>
-
-                          <!-- Screenshots -->
-                          <div
-                            v-if="website.screenshots?.length"
-                            class="grid grid-cols-2 lg:grid-cols-3 gap-4 p-5"
-                          >
-                            <div
-                              v-for="(image, idx) in website.screenshots"
-                              :key="idx"
-                              class="aspect-video rounded-lg overflow-hidden border border-steel/30"
-                            >
-                              <img
-                                :src="image"
-                                class="w-full h-full object-cover hover:scale-105 transition duration-300 cursor-pointer"
-                              />
-                            </div>
-                          </div>
-
-                          <!-- Technologies -->
-                          <div
-                            v-if="website.technologies?.length"
-                            class="flex flex-wrap gap-2 px-5 pb-5"
-                          >
-                            <span
-                              v-for="(tech, idx) in website.technologies"
-                              :key="idx"
-                              class="px-3 py-1 rounded-md bg-charcoal border border-steel/30 text-keyword text-sm"
-                            >
-                              {{ tech }}
-                            </span>
-                          </div>
-
-                          <!-- Links -->
-                          <div
-                            class="flex gap-3 px-5 pb-5"
-                          >
-                            <a
-                              v-if="website.github"
-                              :href="website.github"
-                              target="_blank"
-                              class="px-4 py-1 rounded bg-keyword text-charcoal hover:opacity-90 transition"
-                            >
-                              Demo
-                            </a>
-                          </div>
-
                         </div>
                       </div>
                     </template>
@@ -498,69 +439,152 @@
         }
       ]
     },
+    
+
     {
-      title: 'Static Websites',
+      title: 'Club Laiya',
       type: 'personal',
+      demo: 'https://kulaskulas.github.io/club-laiya-static-website',
       expanded: false,
       children: [
         {
-          label: 'Websites',
+          label: 'Project',
           role: 'Frontend Developer',
-          file: 'websites.json',
+          file: 'project.md',
+          value: {
+            name: 'Club Laiya',
+            status: 'Completed',
+            period: '2019'
+          }
+        },
+        {
+          label: 'Overview',
+          file: 'overview.md',
+          value: 'A responsive resort website featuring accommodations, amenities, galleries, and booking information.'
+        },
+        {
+          label: 'Screenshots',
+          file: 'screenshots.json',
           value: [
-            {
-              name: 'Club Laiya',
-              description: 'A responsive resort website featuring accommodations, amenities, galleries, and booking information.',
-              github: 'https://kulaskulas.github.io/club-laiya-static-website',
-              technologies: [
-                'HTML5',
-                'CSS3',
-                'JavaScript',
-                'Bootstrap',
-                'jQuery'
-              ],
-              screenshots: [
-                image('portfolio/static_website/club_laiya/home.png'),
-                // image('portfolio/static/club_laiya/2.png')
-              ]
-            },
-            {
-              name: 'Aquaria',
-              description: 'A responsive resort website designed to showcase accommodations, amenities, and resort services with an engaging visual experience.',
-              live: 'https://username.github.io/restaurant',
-              github: 'https://kulaskulas.github.io/aquaria-static-website/',
-              technologies: [
-                'HTML5',
-                'CSS3',
-                'JavaScript',
-                'Bootstrap',
-                'jQuery'
-              ],
-              screenshots: [
-                image('portfolio/static_website/aquaria/home.png'),
-              ]
-            },
-            {
-              name: 'Aqua',
-              description: 'A responsive resort website designed to showcase accommodations, amenities, and services through a modern and visually engaging interface.',
-              live: 'https://username.github.io/construction',
-              github: 'https://kulaskulas.github.io/aqua-static-website/',
-              technologies: [
-                'HTML5',
-                'CSS3',
-                'JavaScript',
-                'Bootstrap',
-                'jQuery'
-              ],
-              screenshots: [
-                image('portfolio/static_website/aqua/home.png'),
-              ]
-            }
+            image('portfolio/static_website/club_laiya/home.png')
           ]
         },
+        {
+          label: 'Technologies',
+          file: 'tech-stack.json',
+          value: [
+            'HTML5',
+            'CSS3',
+            'JavaScript',
+            'Bootstrap',
+            'jQuery'
+          ]
+        },
+        // {
+        //   label: 'Links',
+        //   file: 'links.json',
+        //   value: {
+        //     live: 'https://kulaskulas.github.io/club-laiya-static-website'
+        //   }
+        // }
       ]
     },
-
+    {
+      title: 'Aquaria',
+      type: 'personal',
+      expanded: false,
+      demo: 'https://kulaskulas.github.io/aquaria-static-website/',
+      children: [
+        {
+          label: 'Project',
+          role: 'Frontend Developer',
+          file: 'project.md',
+          value: {
+            name: 'Aquaria',
+            status: 'Completed',
+            period: '2019'
+          }
+        },
+        {
+          label: 'Overview',
+          file: 'overview.md',
+          value: 'A responsive resort website showcasing accommodations, facilities, and resort information.'
+        },
+        {
+          label: 'Screenshots',
+          file: 'screenshots.json',
+          value: [
+            image('portfolio/static_website/aquaria/home.png')
+          ]
+        },
+        {
+          label: 'Technologies',
+          file: 'tech-stack.json',
+          value: [
+            'HTML5',
+            'CSS3',
+            'JavaScript',
+            'Bootstrap',
+            'jQuery'
+          ]
+        },
+        // {
+        //   label: 'Links',
+        //   file: 'links.json',
+        //   value: {
+        //     live: 'https://kulaskulas.github.io/aquaria-static-website/'
+        //   }
+        // }
+      ]
+    },
+    {
+      title: 'Aqua',
+      type: 'personal',
+      expanded: false,
+      demo: 'https://kulaskulas.github.io/aqua-static-website/',
+      children: [
+        {
+          label: 'Project',
+          role: 'Frontend Developer',
+          file: 'project.md',
+          value: {
+            name: 'Aqua',
+            status: 'Completed',
+            period: '2019'
+          }
+        },
+        {
+          label: 'Overview',
+          file: 'overview.md',
+          value: 'A responsive resort website with a modern landing page, gallery, and contact information.'
+        },
+        {
+          label: 'Screenshots',
+          file: 'screenshots.json',
+          value: [
+            image('portfolio/static_website/aqua/home.png')
+          ]
+        },
+        {
+          label: 'Technologies',
+          file: 'tech-stack.json',
+          value: [
+            'HTML5',
+            'CSS3',
+            'JavaScript',
+            'Bootstrap',
+            'jQuery'
+          ]
+        },
+        // {
+        //   label: 'Links',
+        //   file: 'links.json',
+        //   value: {
+        //     live: 'https://kulaskulas.github.io/aqua-static-website/'
+        //   }
+        // }
+      ]
+    },
 
     {
       title: 'Construction Bidding System',
