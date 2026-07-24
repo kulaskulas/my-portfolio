@@ -30,21 +30,35 @@
   import Header from './components/layouts/Header.vue';
   import { useRoute } from 'vue-router'
   import { watch } from 'vue';
-  // import { usePageStore } from './stores';
+  import { usePageStore } from './stores';
 
-  // const pageStore = usePageStore();
+  const pageStore = usePageStore();
   const route = useRoute()
 
-watch(
-  () => route.name,
-  (name) => {
-    if (name) {
-      localStorage.setItem('activePage', name);
-    }
-  },
-  { immediate: true }
-)
+  watch(
+  () => ({ name: route.name, path: route.path }),
+    ({ name, path }) => {
+      if (!name) return;
 
+      localStorage.setItem("activePage", name);
+
+      if (path === "/home") {
+        pageStore.setActivePage({
+          name: "Home",
+          href: "#",
+          path: "/home",
+        });
+        return;
+      }
+
+      const currentPinnedPages = pageStore.getCurrentPinnedPages();
+
+      if (!currentPinnedPages?.length) {
+        pageStore.setActivePage({ name, path });
+      }
+    },
+    { immediate: true }
+  );
   
 </script>
 

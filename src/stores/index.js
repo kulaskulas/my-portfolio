@@ -73,6 +73,7 @@ export const usePageStore = defineStore('pageStore', () => {
   return {
     activePage,
     pinnedPages,
+    getCurrentPinnedPages,
     unpinPage,
     setActivePage,
   }
