@@ -5,7 +5,7 @@
       bg-[size:56px_100%]">
   </div>
   <div class="w-full p-10">
-    <div class="max-w-7xl mx-auto">
+    <div class="max-w-6xl mx-auto">
       <div class="flex items-center gap-16">
 
         <!-- Left -->
@@ -13,7 +13,7 @@
           <div class="grid grid-cols-2 gap-5 auto-rows-[190px]">
 
             <!-- Featured Image -->
-            <div class="col-span-2 row-span-2 rounded-xl overflow-hidden border border-steel shadow-lg">
+            <div class="col-span-1 row-span-1 rounded-xl overflow-hidden border border-steel shadow-lg">
               <img
                 :src="working1"
                 class="w-full h-full object-cover transition-transform duration-300 hover:scale-110"
@@ -37,20 +37,20 @@
             </div>
 
             <!-- Bottom Right -->
-            <div class="rounded-xl overflow-hidden border border-steel shadow-lg rotate-[-2deg]">
-              <img
-                :src="working1"
-                class="w-full h-full object-cover transition-transform duration-300 hover:scale-110"
-              />
-            </div>
-
-            <!-- Bottom Wide -->
-            <!-- <div class="col-span-2 rounded-xl overflow-hidden border border-steel shadow-lg rotate-[1deg]">
+            <!-- <div class="rounded-xl overflow-hidden border border-steel shadow-lg rotate-[-2deg]">
               <img
                 :src="working1"
                 class="w-full h-full object-cover transition-transform duration-300 hover:scale-110"
               />
             </div> -->
+
+            <!-- Bottom Wide -->
+            <div class="col-span-2 rounded-xl overflow-hidden border border-steel shadow-lg rotate-[1deg]">
+              <img
+                :src="working1"
+                class="w-full h-full object-cover transition-transform duration-300 hover:scale-110"
+              />
+            </div>
 
           </div>
         </div>
@@ -179,7 +179,7 @@
 
 
   <div class="w-full p-10">
-    <div class="max-w-7xl mx-auto">
+    <div class="max-w-6xl mx-auto">
       <div class="flex items-start gap-16">
 
         <!-- Left -->
