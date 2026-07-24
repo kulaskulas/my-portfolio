@@ -16,7 +16,7 @@
                 pageStore.setActivePage(page)
               ]"
               >
-              <p>{{ page.name }}</p>
+              <p class="pr-30">{{ page.name }}</p>
             </router-link>
             <span
               v-if="pageStore.pinnedPages.length > 1"

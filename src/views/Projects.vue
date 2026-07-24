@@ -1,9 +1,9 @@
 <template>
   <div
     class="absolute inset-0 pointer-events-none
-      bg-[linear-gradient(to_right,rgba(255,255,255,0.02)_1px,transparent_1px)]
-      bg-[size:56px_100%]">
-  </div>
+      bg-[linear-gradient(to_right,rgba(43,43,43,0.08)_1px,transparent_1px),linear-gradient(to_bottom,rgba(43,43,43,0.08)_1px,transparent_1px)]
+      bg-[length:48px_48px]"
+  ></div>
   <div class="w-full flex justify-center">
     <div class="w-full max-w-6xl p-10">
       <template v-for="(data, index) in projects" :key="index">
@@ -204,6 +204,79 @@
                       </div>
                     </template>
 
+                    <!-- Websites -->
+                    <template v-else-if="child.label === 'Websites'">
+                      <div>
+                        <h3 class="text-orchid text-xl mb-6">
+                          Websites
+                        </h3>
+
+                        <div
+                          v-for="(website, index) in child.value"
+                          :key="index"
+                          class="mb-8 rounded-lg border border-steel/30 bg-topbar overflow-hidden"
+                        >
+
+                          <!-- Header -->
+                          <div class="px-5 py-3 border-b border-steel/30">
+                            <h4 class="text-lg text-sage font-medium">
+                              {{ website.name }}
+                            </h4>
+
+                            <p class="text-white mt-2">
+                              {{ website.description }}
+                            </p>
+                          </div>
+
+                          <!-- Screenshots -->
+                          <div
+                            v-if="website.screenshots?.length"
+                            class="grid grid-cols-2 lg:grid-cols-3 gap-4 p-5"
+                          >
+                            <div
+                              v-for="(image, idx) in website.screenshots"
+                              :key="idx"
+                              class="aspect-video rounded-lg overflow-hidden border border-steel/30"
+                            >
+                              <img
+                                :src="image"
+                                class="w-full h-full object-cover hover:scale-105 transition duration-300 cursor-pointer"
+                              />
+                            </div>
+                          </div>
+
+                          <!-- Technologies -->
+                          <div
+                            v-if="website.technologies?.length"
+                            class="flex flex-wrap gap-2 px-5 pb-5"
+                          >
+                            <span
+                              v-for="(tech, idx) in website.technologies"
+                              :key="idx"
+                              class="px-3 py-1 rounded-md bg-charcoal border border-steel/30 text-keyword text-sm"
+                            >
+                              {{ tech }}
+                            </span>
+                          </div>
+
+                          <!-- Links -->
+                          <div
+                            class="flex gap-3 px-5 pb-5"
+                          >
+                            <a
+                              v-if="website.github"
+                              :href="website.github"
+                              target="_blank"
+                              class="px-4 py-1 rounded bg-keyword text-charcoal hover:opacity-90 transition"
+                            >
+                              Demo
+                            </a>
+                          </div>
+
+                        </div>
+                      </div>
+                    </template>
+
                     <!-- Fallback -->
                     <template v-else>
                       <p class="text-sage">
@@ -256,15 +329,16 @@
         {
           label: 'Overview',
           file: 'overview.md',
-          value: 'A customizable portfolio builder that allows developers to create portfolio websites using reusable sections and blocks.'
+          value: 'A simple portfolio builder that allows user to create portfolio websites using reusable sections and blocks.'
         },
         {
           label: 'Features',
           file: 'features.md',
           value: [
-            'Dynamic page builder',
-            'Multiple templates',
-            'Live preview',
+            'Create and manage portfolios',
+            'Choose from default templates',
+            'Support for multiple templates',
+            'Real-time live preview',
             'Responsive design'
           ]
         },
@@ -282,9 +356,10 @@
           label: 'Screenshots',
           file: 'screenshots.md',
           value: [
-            'https://placehold.co/1200x700/1f2937/ffffff?text=Developer+Portfolio',
-            'https://placehold.co/1200x700/0f172a/ffffff?text=Ecommerce+Dashboard',
-            'https://placehold.co/1200x700/111827/22c55e?text=Laravel+%2B+Vue.js'
+            image('portfolio/cv_builder/dashboard.png'),
+            image('portfolio/cv_builder/create_portfolio.png'),
+            image('portfolio/cv_builder/builder.png'),
+            image('portfolio/cv_builder/public_view.png'),
           ]
         }
       ]
@@ -346,6 +421,82 @@
           ]
         }
       ]
-    }
+    },
+    {
+  title: 'Static Websites',
+  type: 'personal',
+  expanded: true,
+  children: [
+    // {
+    //   label: 'Collection',
+    //   file: 'collection.md',
+    //   value: {
+    //     name: 'Static Websites Collection',
+    //     status: 'Completed',
+    //     period: '2019 - 2021',
+    //     total: 3
+    //   }
+    // },
+    // {
+    //   label: 'Overview',
+    //   file: 'overview.md',
+    //   value: 'A collection of responsive static websites built for personal practice and clients. Each project focuses on clean UI, responsive layouts, and modern web design.'
+    // },
+    {
+      label: 'Websites',
+      file: 'websites.json',
+      value: [
+        {
+          name: 'Club Laiya',
+          description: 'A responsive resort website featuring accommodations, amenities, galleries, and booking information.',
+          github: 'https://kulaskulas.github.io/club-laiya-static-website',
+          technologies: [
+            'HTML5',
+            'CSS3',
+            'JavaScript',
+            'Bootstrap',
+            'jQuery'
+          ],
+          screenshots: [
+            image('portfolio/static_website/club_laiya/home.png'),
+            // image('portfolio/static/club_laiya/2.png')
+          ]
+        },
+        {
+          name: 'Aquaria',
+          description: 'A responsive resort website designed to showcase accommodations, amenities, and resort services with an engaging visual experience.',
+          live: 'https://username.github.io/restaurant',
+          github: 'https://kulaskulas.github.io/aquaria-static-website/',
+          technologies: [
+            'HTML5',
+            'CSS3',
+            'JavaScript',
+            'Bootstrap',
+            'jQuery'
+          ],
+          screenshots: [
+            image('portfolio/static_website/aquaria/home.png'),
+          ]
+        },
+        {
+          name: 'Aqua',
+          description: 'A responsive resort website designed to showcase accommodations, amenities, and services through a modern and visually engaging interface.',
+          live: 'https://username.github.io/construction',
+          github: 'https://kulaskulas.github.io/aqua-static-website/',
+          technologies: [
+            'HTML5',
+            'CSS3',
+            'JavaScript',
+            'Bootstrap',
+            'jQuery'
+          ],
+          screenshots: [
+            image('portfolio/static_website/aqua/home.png'),
+          ]
+        }
+      ]
+    },
+  ]
+}
   ])
 </script>

@@ -36,5 +36,6 @@
     { name: 'About', href: '#', path: '/about', icon : 'vscode-icons:default-folder', icon_opened: 'vscode-icons:default-folder-opened' },
     { name: 'Experience', href: '#', path: '/experience', icon : 'vscode-icons:default-folder', icon_opened: 'vscode-icons:default-folder-opened' },
     { name: 'Projects', href: '#', path: '/projects', icon : 'vscode-icons:default-folder', icon_opened: 'vscode-icons:default-folder-opened' },
+    { name: 'Skills', href: '#', path: '/skills', icon : 'vscode-icons:default-folder', icon_opened: 'vscode-icons:default-folder-opened' },
   ];
 </script>
