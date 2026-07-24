@@ -236,6 +236,8 @@
   import { ref } from "vue";
   import { Icon } from "@iconify/vue";
 
+  const image = (path) => `${import.meta.env.BASE_URL}assets/images/${path}`;
+
   const projects = ref([
     {
       title: 'Portfolio Builder',
@@ -333,14 +335,14 @@
           label: 'Screenshots',
           file: 'screenshots.md',
           value: [
-            '../../public/assets/images/portfolio/revolving_fund/login.png',
-            '../../public/assets/images/portfolio/revolving_fund/cashflow/cashflow.png',
-            '../../public/assets/images/portfolio/revolving_fund/transactions/1.png',
-            '../../public/assets/images/portfolio/revolving_fund/transactions/cash_advance.png',
-            '../../public/assets/images/portfolio/revolving_fund/transactions/reconciliation.png',
-            '../../public/assets/images/portfolio/revolving_fund/transactions/replenish.png',
-            '../../public/assets/images/portfolio/revolving_fund/transactions/transaction_history.png',
-            '../../public/assets/images/portfolio/revolving_fund/replenishments/replenishments.png',
+            image('portfolio/revolving_fund/login.png'),
+            image('portfolio/revolving_fund/cashflow/cashflow.png'),
+            image('portfolio/revolving_fund/transactions/1.png'),
+            image('portfolio/revolving_fund/transactions/cash_advance.png'),
+            image('portfolio/revolving_fund/transactions/reconciliation.png'),
+            image('portfolio/revolving_fund/transactions/replenish.png'),
+            image('portfolio/revolving_fund/transactions/transaction_history.png'),
+            image('portfolio/revolving_fund/transactions/reimbursements.png'),
           ]
         }
       ]
