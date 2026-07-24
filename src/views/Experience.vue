@@ -206,7 +206,7 @@
 const yearsExperience = ref([
   {
     year: 'April 2021',
-    expanded: false,
+    expanded: true,
     children: [
       {
         label: 'Company',
@@ -265,7 +265,7 @@ const yearsExperience = ref([
   },
   {
     year: 'August 2019',
-    expanded: true,
+    expanded: false,
     children: [
       {
         label: 'Company',
@@ -303,7 +303,10 @@ const yearsExperience = ref([
           'Migrated legacy modules into a modern architecture.',
           'Fixed production issues and optimized performance.',
           'Collaborated with QA and stakeholders during testing.',
-          'Implemented new features and enhancements for an existing e-commerce platform based on client requirements.'
+          'Implemented new features and enhancements for an existing e-commerce platform based on client requirements.',
+          'Built responsive and user-friendly websites based on client requirements.',
+          'Developed and maintained WordPress websites, including theme customization and plugin integration.',
+          'Customized WordPress themes and implemented new features to meet business and client needs.'
         ]
       },
       {
