@@ -139,7 +139,7 @@
                           <li
                             v-for="(item, idx) in child.value"
                             :key="idx"
-                            class="flex items-start gap-3 text-sage"
+                            class="flex items-start gap-3 text-white"
                           >
                             <Icon
                               icon="mdi:check-circle-outline"
@@ -205,8 +205,70 @@
   import { Icon } from "@iconify/vue";
 const yearsExperience = ref([
   {
-    year: 'April 2021',
+    year: 'September 2023 - Current',
     expanded: true,
+    children: [
+      {
+        label: 'Company',
+        file: 'company.md',
+        value: {
+          name: 'M360',
+          industry: 'Communication Tech, SMS API, Omni Channel',
+          location: 'Philippines',
+          website: 'https://www.m360.com.ph/'
+        }
+      },
+      {
+        label: 'Position',
+        file: 'position.md',
+        value: {
+          title: 'Software Engineer',
+          team: 'Application & Platforms',
+          type: 'Full-time'
+        }
+      },
+      {
+        label: 'Duration',
+        file: 'duration.md',
+        value: {
+          period: '2023 - Current',
+          length: '~2 Years'
+        }
+      },
+      {
+        label: 'Responsibilities',
+        file: 'responsibilities.md',
+        value: [
+          'Implemented new features and maintained existing systems to improve application functionality.',
+          'Handled client support requests using Zendesk by investigating issues and providing technical solutions.',
+          'Reviewed application logs and debugging information to diagnose and fix production issues.',
+          'Collaborated on UI/UX improvements by creating responsive and user-friendly interfaces.',
+          'Perform code reviews to ensure code quality, maintainability, and adherence to best practices'
+
+        ]
+      },
+      {
+        label: 'Technologies',
+        file: 'tech-stack.json',
+        value: [
+          'Laravel',
+          'PHP',
+          'MySQL',
+          'JavaScript',
+          'VueJs',
+          'Ubuntu Web Server',
+          'Tailwind',
+          'Git',
+          'REST API',
+          'AlpineJS',
+          'CSS'
+        ]
+      }
+    ]
+  },
+  {
+    year: 'April 2021 - 2023',
+    expanded: false,
     children: [
       {
         label: 'Company',
@@ -264,7 +326,7 @@ const yearsExperience = ref([
     ]
   },
   {
-    year: 'August 2019',
+    year: 'August 2019 - 2021',
     expanded: false,
     children: [
       {
