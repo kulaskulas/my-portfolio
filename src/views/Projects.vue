@@ -4,6 +4,7 @@
       bg-[linear-gradient(to_right,rgba(43,43,43,0.08)_1px,transparent_1px),linear-gradient(to_bottom,rgba(43,43,43,0.08)_1px,transparent_1px)]
       bg-[length:48px_48px]"
   ></div>
+
   <div class="w-full flex justify-center">
     <div class="w-full max-w-6xl p-10">
       <template v-for="(data, index) in projects" :key="index">
@@ -30,12 +31,12 @@
             />
 
             <p class="text-sm text-white">
-              {{ data.title }}
+              {{ data.period }}
             </p>
           </div>
 
           <!-- Expanded -->
-          <Transition
+          <Transition 
             enter-active-class="transition-all duration-700 ease-in-out"
             enter-from-class="opacity-0 max-h-0"
             enter-to-class="opacity-100 max-h-[3000px]"
@@ -49,240 +50,134 @@
             >
 
               <div
-                v-for="(child, i) in data.children"
+                v-for="(category, i) in data.categories"
                 :key="i"
                 class="grid grid-cols-[180px_1fr] gap-8 items-start"
               >
+                <!-- Left -->
+                <div class="flex items-center gap-3 py-3">
+                  <span class="w-4 border-t border-steel/40"></span>
 
-                <!-- Left Label -->
-                <div class="relative pl-6 py-3">
-                  <span
-                    class="absolute left-0 top-1/2 w-4 border-t border-steel/40"
-                  ></span>
-
-                  <template v-if="child.name">
-                    <p class="text-teal font-medium">
-                    {{ child.name }}
+                  <p class="text-teal font-medium">
+                    {{ category.title }}
                   </p>
-                  </template>
-                  <template v-else-if="child.role">
-                    <p class="text-teal font-medium">
-                    {{ child.role }}
-                  </p>
-                  </template>
-                  
                 </div>
 
-                <!-- Editor Card -->
-                <div
-                  class="rounded-lg overflow-hidden border border-steel/30 bg-charcoal shadow-lg"
-                >
+                <!-- Right -->
+                <div class="space-y-6">
 
-                  <!-- Header -->
                   <div
-                    class="flex items-center justify-between px-4 py-2 bg-topbar border-b border-steel/30"
+                    v-for="(project, p) in category.projects"
+                    :key="p"
+                    class="rounded-lg overflow-hidden border border-steel/30 bg-charcoal shadow-lg"
                   >
-                    <div class="flex items-center gap-2">
-                      <Icon
-                        icon="vscode-icons:file-type-markdown"
-                        width="16"
-                      />
 
-                      <span class="text-xs text-steel">
-                        {{ child.file }}
-                      </span>
+                    <!-- Header -->
+                    <div
+                      class="flex items-center justify-between px-4 py-2 bg-topbar border-b border-steel/30"
+                    >
+                      <div class="flex items-center gap-2">
+                        <Icon
+                          icon="vscode-icons:file-type-markdown"
+                          width="16"
+                        />
+
+                        <span class="text-xs text-steel">
+                          {{ project.name.toLowerCase().replace(/\s+/g, '-') }}.md
+                        </span>
+                      </div>
+
+                      <Icon
+                        icon="mdi:close"
+                        width="14"
+                        class="text-steel"
+                      />
                     </div>
 
-                    <Icon
-                      icon="mdi:close"
-                      width="14"
-                      class="text-steel"
-                    />
-                  </div>
+                    <!-- Body -->
+                    <div class="p-6">
 
-                  <div class="p-5">
-
-                    <!-- Project -->
-                    <template v-if="child.label === 'Project'">
-                      <h3 class="text-orchid text-xl mb-4">
-                        {{ child.value.name }}
+                      <h3 class="text-orchid text-2xl mb-5">
+                        {{ project.name }}
                       </h3>
+                      
+                      <!-- Description -->
+                      <p class="text-white leading-relaxed text-[15px] mb-5">
+                        {{ project.description }}
+                      </p>
 
-                      <div class="space-y-2 text-sage">
-                        <p>
-                          <span class="text-keyword">Status:</span>
-                          {{ child.value.status }}
-                        </p>
-
-                        <p>
-                          <span class="text-keyword">Period:</span>
-                          {{ child.value.period }}
-                        </p>
-
-                        <p>
-                          <span class="text-keyword">Type:</span>
-
-                          <span
-                            class="capitalize px-2 py-1 rounded text-xs ml-2"
-                            :class="data.type === 'personal'
-                              ? 'bg-green-500/10 text-green-400 border border-green-500/20'
-                              : 'bg-blue-500/10 text-blue-400 border border-blue-500/20'"
+                      <!-- Gallery -->
+                      <div
+                        v-if="project.screenshots?.length"
+                        class="mb-15"
+                      >
+                        <!-- 1 Screenshot -->
+                        <div
+                          v-if="project.screenshots.length === 1"
+                          class="overflow-hidden rounded-lg border border-steel/30 aspect-video"
+                        >
+                          <img
+                            :src="project.screenshots[0]"
+                            class="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
                           >
-                            {{ data.type }}
-                          </span>
-                        </p>
-
-                        <p v-if="data.demo">
-                          <span class="text-keyword">Demo:</span>
-
-                          <a :href="data.demo" class="px-2 py-1 ">{{ data.demo }}</a>
-                        </p>
-                      </div>
-                    </template>
-
-                    <!-- Overview -->
-                    <template v-else-if="child.label === 'Overview'">
-                      <div>
-                        <h3 class="text-orchid text-xl mb-4">
-                          Overview
-                        </h3>
-
-                        <p class="text-white leading-8">
-                          {{ child.value }}
-                        </p>
-                      </div>
-                    </template>
-
-                    <!-- Features -->
-                    <template v-else-if="child.label === 'Features'">
-                      <div>
-                        <h3 class="text-orchid text-xl mb-4">
-                          Features
-                        </h3>
-
-                        <ul class="space-y-3">
-                          <li
-                            v-for="(item, idx) in child.value"
-                            :key="idx"
-                            class="flex items-start gap-3 text-white"
-                          >
-                            <Icon
-                              icon="mdi:check-circle-outline"
-                              width="18"
-                              class="text-keyword mt-0.5 shrink-0"
-                            />
-
-                            <span>{{ item }}</span>
-                          </li>
-                        </ul>
-                      </div>
-                    </template>
-
-                    <!-- Technologies -->
-                    <template v-else-if="child.label === 'Technologies'">
-                      <div>
-                        <h3 class="text-orchid text-xl mb-4">
-                          Technologies
-                        </h3>
-
-                        <div class="flex flex-wrap gap-3">
-                          <span
-                            v-for="(tech, idx) in child.value"
-                            :key="idx"
-                            class="px-3 py-1 rounded-md bg-topbar border border-steel/30 text-keyword text-sm"
-                          >
-                            {{ tech }}
-                          </span>
                         </div>
-                      </div>
-                    </template>
 
-                    <template v-else-if="child.label === 'Screenshots'">
-                      <div>
-                        <h3 class="text-orchid text-xl mb-4">
-                          Screenshots
-                        </h3>
+                        <!-- 2 Screenshots -->
+                        <div
+                          v-else-if="project.screenshots.length === 2"
+                          class="grid grid-cols-3 gap-2 h-60"
+                        >
 
-                        <div class="grid grid-cols-2 lg:grid-cols-3 gap-4">
+                          <!-- Featured -->
                           <div
-                            v-for="(image, idx) in child.value"
-                            :key="idx"
-                            class="aspect-video overflow-hidden rounded-lg border border-steel/30 bg-topbar"
+                            class="col-span-2 overflow-hidden rounded-lg border border-steel/30"
                           >
                             <img
-                              :src="image"
-                              class="w-full h-full object-cover hover:scale-105 transition-transform duration-300 cursor-pointer"
-                            />
+                              :src="project.screenshots[0]"
+                              class="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                            >
                           </div>
-                        </div>
-                      </div>
-                    </template>
 
-                    <!-- Projects -->
-                    <template v-else-if="child.label === 'Projects'">
-                      <div>
-                        <h3 class="text-orchid text-xl mb-6">
-                          Projects
-                        </h3>
-
-                        <div class="space-y-6">
-
+                          <!-- Side -->
                           <div
-                            v-for="(project, index) in child.value"
-                            :key="index"
-                            class="rounded-lg border border-steel/30 bg-topbar overflow-hidden"
+                            class="overflow-hidden rounded-lg border border-steel/30"
                           >
+                            <img
+                              :src="project.screenshots[1]"
+                              class="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                            >
+                          </div>
 
-                            <!-- Project Header -->
-                            <div class="px-5 py-4 border-b border-steel/30">
-                              <h4 class="text-sage text-lg font-medium">
-                                {{ project.name }}
-                              </h4>
+                        </div>
 
-                              <p class="text-white mt-2 leading-relaxed">
-                                {{ project.description }}
-                              </p>
-                            </div>
+                        <!-- 3+ Screenshots -->
+                        <div
+                          v-else
+                          class="grid grid-cols-3 gap-2 h-60"
+                        >
 
+                          <!-- Featured -->
+                          <div
+                            class="col-span-2 overflow-hidden rounded-lg border border-steel/30"
+                          >
+                            <img
+                              :src="project.screenshots[0]"
+                              class="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                            >
+                          </div>
 
-                            <!-- Project Details -->
-                            <div class="p-5 space-y-4">
+                          <!-- Right Side -->
+                          <div class="grid grid-rows-2 gap-2">
 
-                              <!-- Role -->
-                              <div v-if="project.role">
-                                <span class="text-keyword">
-                                  Role:
-                                </span>
-
-                                <span class="text-sage ml-2">
-                                  {{ project.role }}
-                                </span>
-                              </div>
-
-
-                              <!-- Technologies -->
-                              <div v-if="project.technologies?.length">
-
-                                <h5 class="text-orchid mb-3">
-                                  Technologies
-                                </h5>
-
-                                <div class="flex flex-wrap gap-2">
-
-                                  <span
-                                    v-for="(tech, idx) in project.technologies"
-                                    :key="idx"
-                                    class="px-3 py-1 rounded-md 
-                                    bg-charcoal border border-steel/30 
-                                    text-keyword text-sm"
-                                  >
-                                    {{ tech }}
-                                  </span>
-
-                                </div>
-
-                              </div>
-
+                            <div
+                              v-for="(image, idx) in project.screenshots.slice(1, 3)"
+                              :key="idx"
+                              class="overflow-hidden rounded-lg border border-steel/30"
+                            >
+                              <img
+                                :src="image"
+                                class="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                              >
                             </div>
 
                           </div>
@@ -290,19 +185,86 @@
                         </div>
 
                       </div>
-                    </template>
 
-                    <!-- Fallback -->
-                    <template v-else>
-                      <p class="text-sage">
-                        {{ child.value }}
-                      </p>
-                    </template>
+                      <div class="flex justify-between">
+                        <div class="pr-4">
+                          <h3 class="text-orchid text-xl mb-4">
+                            {{ project.type === 'work' ? 'Key Contributions' : 'Features'}}
+                            
+                          </h3>
+
+                          <ul class="space-y-3">
+                            <li
+                              v-for="(feat, idx) in project.features"
+                              :key="idx"
+                              class="flex items-start gap-3 text-white"
+                            >
+                              <Icon
+                                icon="mdi:check-circle-outline"
+                                width="18"
+                                class="text-keyword mt-0.5 shrink-0"
+                              />
+
+                              <span class="leading-relaxed text-sm">{{ feat }}</span>
+                            </li>
+                          </ul>
+                        </div>
+                        <div>
+                          <h3 class="text-orchid text-xl mb-4">
+                            Technologies
+                          </h3>
+
+                          <div class="flex flex-wrap gap-3">
+                            <span
+                              v-for="(tech, idx) in project.technologies"
+                              :key="idx"
+                              class="px-3 py-1 rounded-md bg-topbar border border-steel/30 text-keyword text-sm"
+                            >
+                              {{ tech }}
+                            </span>
+                          </div>
+
+                          <div class="space-y-2 text-sage">
+                            <div class="my-5 w-full h-px bg-steel/40"></div>
+                            <!-- <p>
+                              <span class="text-keyword">Status:</span>
+                              {{ project.status }}
+                            </p> -->
+
+                            <p>
+                              <span class="text-keyword">Period:</span>
+                              {{ project.period }}
+                            </p>
+
+                            <p>
+                              <span class="text-keyword">Type:</span>
+
+                              <span
+                                class="capitalize px-2 py-1 rounded text-xs ml-2"
+                                :class="project.type === 'personal'
+                                  ? 'bg-green-500/10 text-green-400 border border-green-500/20'
+                                  : 'bg-blue-500/10 text-blue-400 border border-blue-500/20'"
+                              >
+                                {{ project.type }}
+                              </span>
+                            </p>
+
+                            <p v-if="project.demo">
+                              <span class="text-keyword">Demo:</span>
+
+                              <a :href="project?.demo" class="px-2 py-1 text-primary" :disabled="project?.demo" target="_blank">{{ project?.demo }}</a>
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+
+                     
+
+                    </div>
 
                   </div>
 
                 </div>
-
               </div>
 
             </div>
@@ -327,512 +289,367 @@
   const image = (path) => `${import.meta.env.BASE_URL}assets/images/${path}`;
 
   const projects = ref([
-    {
-      title: 'Portfolio Builder',
-      type: 'personal',
-      expanded: false,
-      children: [
-        {
-          label: 'Project',
-          role: 'Fullstack Developer',
-          file: 'project.md',
-          value: {
+  {
+    period: 'September 2023 - Present',
+    expanded: true,
+
+    categories: [
+      {
+        title: 'Web Applications',
+        expanded: true,
+
+        projects: [
+          {
             name: 'Portfolio Builder',
+            file: 'project.vue',
+            type: 'personal',
+            role: 'Fullstack Developer',
             status: 'In Progress',
-            period: '2026'
-          }
-        },
-        {
-          label: 'Overview',
-          file: 'overview.md',
-          value: 'A simple portfolio builder that allows user to create portfolio websites using reusable sections and blocks.'
-        },
-        {
-          label: 'Features',
-          file: 'features.md',
-          value: [
-            'Create and manage portfolios',
-            'Choose from default templates',
-            'Support for multiple templates',
-            'Real-time live preview',
-            'Responsive design'
-          ]
-        },
-        {
-          label: 'Technologies',
-          file: 'tech-stack.json',
-          value: [
-            'Laravel',
-            'Vue.js',
-            'Tailwind CSS',
-            'MySQL'
-          ]
-        },
-        {
-          label: 'Screenshots',
-          file: 'screenshots.md',
-          value: [
-            image('portfolio/cv_builder/dashboard.png'),
-            image('portfolio/cv_builder/create_portfolio.png'),
-            image('portfolio/cv_builder/builder.png'),
-            image('portfolio/cv_builder/public_view.png'),
-          ]
-        }
-      ]
-    },
-    {
-      title: 'Revolving Fund',
-      type: 'personal',
-      expanded: true,
-      children: [
-        {
-          label: 'Project',
-          role: 'Fullstack Developer',
-          file: 'project.md',
-          value: {
+            period: '2026',
+            demo : '',
+            description: 'A simple portfolio builder that allows users to create portfolio websites using reusable sections and blocks.',
+
+            technologies: [
+              'Laravel',
+              'Vue.js',
+              'Tailwind CSS',
+              'MySQL'
+            ],
+
+            features: [
+              'Create and manage portfolios',
+              'Choose from default templates',
+              'Support for multiple templates',
+              'Real-time live preview',
+              'Responsive design'
+            ],
+
+            screenshots: [
+              image('portfolio/cv_builder/dashboard.png'),
+              image('portfolio/cv_builder/create_portfolio.png'),
+              image('portfolio/cv_builder/builder.png'),
+              image('portfolio/cv_builder/public_view.png'),
+            ]
+          },
+
+          {
             name: 'Revolving Fund',
+            file: 'prject.ts',
+            type: 'personal',
+            role: 'Fullstack Developer',
             status: 'In Progress',
-            period: '2026'
-          }
-        },
-        {
-          label: 'Overview',
-          file: 'overview.md',
-          value: 'A web-based Revolving Fund Management System that streamlines fund requests, approvals, reimbursements, replenishments, and financial tracking.'
-        },
-        {
-          label: 'Features',
-          file: 'features.md',
-          value: [
-            'Cash Advance',
-            'Reconciliation',
-            'Reimbursements',
-            'Replenish',
-            'Transaction History',
-            'Cash Flow',
-            'Export File'
-          ]
-        },
-        {
-          label: 'Technologies',
-          file: 'tech-stack.json',
-          value: [
-            'Laravel',
-            'ReactJs',
-            'Tailwind CSS',
-            'MySQL'
-          ]
-        },
-        {
-          label: 'Screenshots',
-          file: 'screenshots.md',
-          value: [
-            image('portfolio/revolving_fund/login.png'),
-            image('portfolio/revolving_fund/cashflow/cashflow.png'),
-            image('portfolio/revolving_fund/transactions/1.png'),
-            image('portfolio/revolving_fund/transactions/cash_advance.png'),
-            image('portfolio/revolving_fund/transactions/reconciliation.png'),
-            image('portfolio/revolving_fund/transactions/replenish.png'),
-            image('portfolio/revolving_fund/transactions/transaction_history.png'),
-            image('portfolio/revolving_fund/transactions/reimbursements.png'),
-          ]
-        }
-      ]
-    },
-    
+            period: '2026',
+            description: 'A web-based Revolving Fund Management System that streamlines fund requests, approvals, reimbursements, replenishments, and financial tracking.',
 
-    {
-      title: 'Club Laiya',
-      type: 'personal',
-      demo: 'https://kulaskulas.github.io/club-laiya-static-website',
-      expanded: false,
-      children: [
-        {
-          label: 'Project',
-          role: 'Frontend Developer',
-          file: 'project.md',
-          value: {
-            name: 'Club Laiya',
-            status: 'Completed',
-            period: '2019'
-          }
-        },
-        {
-          label: 'Overview',
-          file: 'overview.md',
-          value: 'A responsive resort website featuring accommodations, amenities, galleries, and booking information.'
-        },
-        {
-          label: 'Screenshots',
-          file: 'screenshots.json',
-          value: [
-            image('portfolio/static_website/club_laiya/home.png')
-          ]
-        },
-        {
-          label: 'Technologies',
-          file: 'tech-stack.json',
-          value: [
-            'HTML5',
-            'CSS3',
-            'JavaScript',
-            'Bootstrap',
-            'jQuery'
-          ]
-        },
-        // {
-        //   label: 'Links',
-        //   file: 'links.json',
-        //   value: {
-        //     live: 'https://kulaskulas.github.io/club-laiya-static-website'
-        //   }
-        // }
-      ]
-    },
-    {
-      title: 'Aquaria',
-      type: 'personal',
-      expanded: false,
-      demo: 'https://kulaskulas.github.io/aquaria-static-website/',
-      children: [
-        {
-          label: 'Project',
-          role: 'Frontend Developer',
-          file: 'project.md',
-          value: {
-            name: 'Aquaria',
-            status: 'Completed',
-            period: '2019'
-          }
-        },
-        {
-          label: 'Overview',
-          file: 'overview.md',
-          value: 'A responsive resort website showcasing accommodations, facilities, and resort information.'
-        },
-        {
-          label: 'Screenshots',
-          file: 'screenshots.json',
-          value: [
-            image('portfolio/static_website/aquaria/home.png')
-          ]
-        },
-        {
-          label: 'Technologies',
-          file: 'tech-stack.json',
-          value: [
-            'HTML5',
-            'CSS3',
-            'JavaScript',
-            'Bootstrap',
-            'jQuery'
-          ]
-        },
-        // {
-        //   label: 'Links',
-        //   file: 'links.json',
-        //   value: {
-        //     live: 'https://kulaskulas.github.io/aquaria-static-website/'
-        //   }
-        // }
-      ]
-    },
-    {
-      title: 'Aqua',
-      type: 'personal',
-      expanded: false,
-      demo: 'https://kulaskulas.github.io/aqua-static-website/',
-      children: [
-        {
-          label: 'Project',
-          role: 'Frontend Developer',
-          file: 'project.md',
-          value: {
-            name: 'Aqua',
-            status: 'Completed',
-            period: '2019'
-          }
-        },
-        {
-          label: 'Overview',
-          file: 'overview.md',
-          value: 'A responsive resort website with a modern landing page, gallery, and contact information.'
-        },
-        {
-          label: 'Screenshots',
-          file: 'screenshots.json',
-          value: [
-            image('portfolio/static_website/aqua/home.png')
-          ]
-        },
-        {
-          label: 'Technologies',
-          file: 'tech-stack.json',
-          value: [
-            'HTML5',
-            'CSS3',
-            'JavaScript',
-            'Bootstrap',
-            'jQuery'
-          ]
-        },
-        // {
-        //   label: 'Links',
-        //   file: 'links.json',
-        //   value: {
-        //     live: 'https://kulaskulas.github.io/aqua-static-website/'
-        //   }
-        // }
-      ]
-    },
+            technologies: [
+              'Laravel',
+              'React',
+              'Tailwind CSS',
+              'MySQL'
+            ],
 
-    {
-      title: 'Construction Bidding System',
-      type: 'work',
-      expanded: false,
-      children: [
-        {
-          label: 'Project',
-          role: 'Fullstack Developer',
-          file: 'project.md',
-          value: {
-            name: 'Construction Bidding System',
-            status: '</>',
-            period: '</>'
-          }
-        },
-        {
-          label: 'Overview',
-          file: 'overview.md',
-          value: 'Built a web-based bidding platform that manages project proposals, contractor submissions, evaluation processes, and bidding workflows.'
-        },
-        {
-          label: 'Features',
-          file: 'features.md',
-          value: [
-            '</>'
-          ]
-        },
-        {
-          label: 'Technologies',
-          file: 'tech-stack.json',
-          value: [
-            'Laravel',
-            'Jquery',
-            'Websockets',
-            'Real-time Data',
-            'MySQL',
-            'API Integration'
-          ]
-        },
-      ]
-    },
+            features: [
+              'Cash Advance',
+              'Reconciliation',
+              'Reimbursements',
+              'Replenish',
+              'Transaction History',
+              'Cash Flow',
+              'Export File'
+            ],
 
-    {
-      title: 'Hospital Management System',
-      type: 'work',
-      expanded: false,
-      children: [
-        {
-          label: 'Project',
-          role: 'Fullstack Developer',
-          file: 'project.md',
-          value: {
-            name: 'Hospital Management System',
-            status: '</>',
-            period: '</>'
-          }
-        },
-        {
-          label: 'Overview',
-          file: 'overview.md',
-          value: 'Developed and maintained a hospital system supporting healthcare workflows, data management, and operational processes.'
-        },
-        {
-          label: 'Features',
-          file: 'features.md',
-          value: [
-            '</>'
-          ]
-        },
-        {
-          label: 'Technologies',
-          file: 'tech-stack.json',
-          value: [
-            'Laravel',
-            'Websockets',
-            'Real-time Data',
-            'MySQL',
-            'Jquery',
-            'API Integration'
-          ]
-        },
-      ]
-    },
-    
+            screenshots: [
+              image('portfolio/revolving_fund/login.png'),
+              image('portfolio/revolving_fund/cashflow/cashflow.png'),
+              image('portfolio/revolving_fund/transactions/1.png'),
+              image('portfolio/revolving_fund/transactions/cash_advance.png'),
+              image('portfolio/revolving_fund/transactions/reconciliation.png'),
+              image('portfolio/revolving_fund/transactions/replenish.png'),
+              image('portfolio/revolving_fund/transactions/transaction_history.png'),
+              image('portfolio/revolving_fund/transactions/reimbursements.png'),
+            ]
+          },
 
-    {
-      title: 'Hotel Management System Migration',
-      type: 'work',
-      expanded: false,
-      children: [
-        {
-          label: 'Project',
-          role: 'Fullstack Developer',
-          file: 'project.md',
-          value: {
-            name: 'Unified Portal',
-            status: '</>',
-            period: '</>'
-          }
-        },
-        {
-          label: 'Overview',
-          file: 'overview.md',
-          value: 'Migrated an existing hotel management system from legacy PHP into Laravel, improving code maintainability, application structure, and scalability. Implemented new features and optimized existing workflows for better performance.'
-        },
-        {
-          label: 'Features',
-          file: 'features.md',
-          value: [
-            '</>'
-          ]
-        },
-        {
-          label: 'Technologies',
-          file: 'tech-stack.json',
-          value: [
-            'Laravel',
-            'Bootstrap',
-            'CSS',
-            'MySQL',
-            'Jquery'
-          ]
-        },
-      ]
-    },
-
-    {
-      title: 'Clinic Management System',
-      type: 'work',
-      expanded: false,
-      children: [
-        {
-          label: 'Project',
-          role: 'Fullstack Developer',
-          file: 'project.md',
-          value: {
-            name: 'Unified Portal',
-            status: '</>',
-            period: '</>'
-          }
-        },
-        {
-          label: 'Overview',
-          file: 'overview.md',
-          value: 'Developed a web-based clinic management system to streamline patient records, appointments, and administrative workflows. Built features to improve daily operations and data management.'
-        },
-        {
-          label: 'Features',
-          file: 'features.md',
-          value: [
-            '</>'
-          ]
-        },
-        {
-          label: 'Technologies',
-          file: 'tech-stack.json',
-          value: [
-            'Laravel',
-            'Jquery',
-            'MySQL',
-            'CSS',
-            'Bootstrap'
-          ]
-        },
-      ]
-    },
-
-    {
-      title: 'Unified Portal',
-      type: 'work',
-      expanded: false,
-      children: [
-        {
-          label: 'Project',
-          role: 'Frontend Developer',
-          file: 'project.md',
-          value: {
-            name: 'Unified Portal',
-            status: '</>',
-            period: '</>'
-          }
-        },
-        {
-          label: 'Overview',
-          file: 'overview.md',
-          value: 'Contributed to the development of a unified portal that integrates multiple communication channels.'
-        },
-        {
-          label: 'Features',
-          file: 'features.md',
-          value: [
-            '</>'
-          ]
-        },
-        {
-          label: 'Technologies',
-          file: 'tech-stack.json',
-          value: [
-            'Laravel',
-            'Vue.js',
-            'API Integration',
-            'MySQL',
-            'More ...'
-          ]
-        },
-      ]
-    },
-
-    {
-      title: 'Omnichannel Platform',
-      type: 'work',
-      expanded: false,
-      children: [
-        {
-          label: 'Project',
-          role: 'Frontend Developer',
-          file: 'project.md',
-          value: {
+          {
             name: 'Omnichannel Platform',
-            status: '</>',
-            period: '</>'
+            file: 'prject.js',
+            type: 'work',
+            role: 'Frontend Developer',
+            status: 'In Progress',
+            period: '2023 - 2025',
+            description: 'Part of the development team building an omnichannel platform that integrates multiple communication channels into a unified customer interaction system.',
+
+            technologies: [
+              'Laravel',
+              'Vue.js',
+              'API Integration',
+              'MySQL',
+              'More ...'
+            ],
+
+            features: [
+              'Feature development',
+              'Bug fixing and maintenance',
+              'Code reviews',
+              'API integration',
+              'UI/UX improvements'
+            ],
+          },
+
+          {
+            name: 'Unified Portal',
+            file: 'prject.js',
+            type: 'work',
+            role: 'Frontend Developer',
+            status: 'In Progress',
+            period: '2025 - Current',
+            description: 'Contributed to the development of a unified portal that integrates multiple communication channels.',
+
+            technologies: [
+              'Laravel',
+              'Vue.js',
+              'API Integration',
+              'MySQL',
+              'More ...'
+            ],
+
+            features: [
+              'Feature development',
+              'Bug fixing and maintenance',
+              'Code reviews',
+              'API integration',
+              'UI/UX improvements'
+            ],
           }
-        },
-        {
-          label: 'Overview',
-          file: 'overview.md',
-          value: 'Part of the development team building an omnichannel platform that integrates multiple communication channels into a unified customer interaction system.'
-        },
-        {
-          label: 'Features',
-          file: 'features.md',
-          value: [
-            '</>'
-          ]
-        },
-        {
-          label: 'Technologies',
-          file: 'tech-stack.json',
-          value: [
-            'Laravel',
-            'Vue.js',
-            'API Integration',
-            'MySQL',
-            'More ...'
-          ]
-        },
-      ]
-    },
-  ])
+        ]
+      },
+    ]
+  },
+  {
+    period: 'September 2021 - 2023',
+    expanded: false,
+
+    categories: [
+      {
+        title: 'Web Applications',
+        expanded: true,
+
+        projects: [
+          {
+            name: 'Hospital Management System',
+            file: 'project.vue',
+            type: 'work',
+            role: 'Fullstack Developer',
+            status: '-',
+            period: '2022 - 2023',
+            demo : '',
+            description: 'Developed and maintained a hospital system supporting healthcare workflows, data management, and operational processes.',
+
+            technologies: [
+              'Laravel',
+              'Websockets',
+              'Real-time Data',
+              'MySQL',
+              'Jquery',
+              'API Integration'
+            ],
+
+            features: [
+              'Led the development team',
+              'Presented system demos to clients',
+              'Developed key application features',
+              'Managed codebase integration and merges',
+              'Collaborated with clients to define requirements',
+              'Debugged and resolved application issues'
+            ],
+          },
+
+          {
+            name: 'Construction Bidding System',
+            file: 'prject.ts',
+            type: 'work',
+            role: 'Fullstack Developer',
+            status: '-',
+            period: '2021',
+            description: 'Built a web-based bidding platform that manages project proposals, contractor submissions, evaluation processes, and bidding workflows.',
+
+            technologies: [
+              'Laravel',
+              'Jquery',
+              'Websockets',
+              'Real-time Data',
+              'MySQL',
+              'API Integration'
+            ],
+
+            features: [
+              'Developed key application features',
+              'Managed codebase integration and merges',
+              'Collaborated with clients to define requirements',
+              'Debugged and resolved application issues',
+              'Implemented API integrations'
+            ],
+          },
+        ]
+      },
+    ]
+  },
+  {
+    period: 'August 2019 - 2021',
+    expanded: false,
+
+    categories: [
+      {
+        title: 'Web Applications',
+        expanded: true,
+
+        projects: [
+          {
+            name: 'Hotel Management System Migration',
+            file: 'project.vue',
+            type: 'work',
+            role: 'Fullstack Developer',
+            status: '-',
+            period: '2019 - 2020',
+            demo : '',
+            description: 'Migrated an existing hotel management system from legacy PHP into Laravel, improving code maintainability, application structure, and scalability. Implemented new features and optimized existing workflows for better performance.',
+
+            technologies: [
+              'Laravel',
+              'Vue.js',
+              'Tailwind CSS',
+              'MySQL'
+            ],
+
+            features: [
+              'Migrated legacy PHP applications to Laravel for improved maintainability',
+              'Debugged and resolved application issues',
+              'Collaborated with project owners on requirements and solutions',
+              'Enhanced existing features and system stability'
+            ],
+          },
+
+          {
+            name: 'Clinic Management System',
+            file: 'prject.ts',
+            type: 'work',
+            role: 'Fullstack Developer',
+            status: '-',
+           period: '2020 - 2021',
+            description: 'Developed a web-based clinic management system to streamline patient records, appointments, and administrative workflows. Built features to improve daily operations and data management.',
+
+            technologies: [
+              'Laravel',
+              'Jquery',
+              'MySQL',
+              'CSS',
+              'Bootstrap'
+            ],
+
+            features: [
+              'Led application development and feature implementation',
+              'Maintained and improved codebase quality',
+              'Fixed bugs and resolved technical issues',
+              'Conducted project demos and feature walkthroughs.'
+            ],
+          },
+        ]
+      },
+
+      {
+        title: 'Website',
+        expanded: false,
+
+        projects: [
+          {
+            name: 'Club Laiya',
+            file: 'project.vue',
+            type: 'work',
+            role: 'Frontend Developer',
+            status: '-',
+            period: '2020 - 2021',
+            demo : 'https://kulaskulas.github.io/club-laiya-static-website/',
+            description: 'A responsive resort website featuring accommodations, amenities, galleries, and booking information.',
+
+            technologies: [
+              'HTML5',
+              'CSS3',
+              'JavaScript',
+              'Bootstrap',
+              'jQuery'
+            ],
+
+            features: [
+              'Developed the complete website from design to implementation',
+              'Designed and improved UI/UX for better user experience',
+              'Ensured mobile responsiveness across devices.'
+            ],
+
+            screenshots: [
+              image('portfolio/static_website/club_laiya/home.png')
+            ]
+          },
+
+          {
+            name: 'Aquaria',
+            file: 'project.vue',
+            type: 'work',
+            role: 'Frontend Developer',
+            status: '-',
+            period: '2020 - 2021',
+            demo : 'https://kulaskulas.github.io/aquaria-static-website/',
+            description: 'A responsive resort website featuring accommodations, amenities, galleries, and booking information.',
+
+            technologies: [
+              'HTML5',
+              'CSS3',
+              'JavaScript',
+              'Bootstrap',
+              'jQuery'
+            ],
+
+            features: [
+              'Developed the complete website from design to implementation',
+              'Designed and improved UI/UX for better user experience',
+              'Ensured mobile responsiveness across devices.'
+            ],
+
+            screenshots: [
+              image('portfolio/static_website/aquaria/home.png')
+            ]
+          },
+
+          {
+            name: 'Aqua',
+            file: 'project.vue',
+            type: 'work',
+            role: 'Frontend Developer',
+            status: '-',
+            period: '2020 - 2021',
+            demo : 'https://kulaskulas.github.io/aqua-static-website/',
+            description: 'A responsive resort website featuring accommodations, amenities, galleries, and booking information.',
+
+            technologies: [
+              'HTML5',
+              'CSS3',
+              'JavaScript',
+              'Bootstrap',
+              'jQuery'
+            ],
+
+            features: [
+              'Developed the complete website from design to implementation',
+              'Designed and improved UI/UX for better user experience',
+              'Ensured mobile responsiveness across devices.'
+            ],
+
+            screenshots: [
+              image('portfolio/static_website/aqua/home.png')
+            ]
+          },
+        ]
+      },
+    ]
+  },
+])
 </script>
