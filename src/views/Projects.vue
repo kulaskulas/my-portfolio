@@ -1,9 +1,5 @@
 <template>
-  <div
-    class="absolute inset-0 pointer-events-none
-      bg-[linear-gradient(to_right,rgba(43,43,43,0.08)_1px,transparent_1px),linear-gradient(to_bottom,rgba(43,43,43,0.08)_1px,transparent_1px)]
-      bg-[length:48px_48px]"
-  ></div>
+  <GridBackground />
 
   <div class="w-full flex justify-center">
     <div class="w-full max-w-6xl p-10">
@@ -274,17 +270,12 @@
       </template>
     </div>
   </div>
-  
-  
 
-
-
-  
 </template>
-
 <script setup>
   import { ref } from "vue";
   import { Icon } from "@iconify/vue";
+  import GridBackground from '@/components/ui/GridBackground.vue';
 
   const image = (path) => `${import.meta.env.BASE_URL}assets/images/${path}`;
 
@@ -343,7 +334,7 @@
 
             technologies: [
               'Laravel',
-              'React',
+              'ReactJs',
               'Tailwind CSS',
               'MySQL'
             ],
@@ -451,7 +442,8 @@
               'Real-time Data',
               'MySQL',
               'Jquery',
-              'API Integration'
+              'API Integration',
+              'alpineJs'
             ],
 
             features: [
@@ -515,10 +507,11 @@
             description: 'Migrated an existing hotel management system from legacy PHP into Laravel, improving code maintainability, application structure, and scalability. Implemented new features and optimized existing workflows for better performance.',
 
             technologies: [
-              'Laravel',
-              'Vue.js',
-              'Tailwind CSS',
-              'MySQL'
+              'HTML5',
+              'CSS3',
+              'JavaScript',
+              'Bootstrap',
+              'jQuery'
             ],
 
             features: [
@@ -557,7 +550,7 @@
       },
 
       {
-        title: 'Website',
+        title: 'Websites',
         expanded: false,
 
         projects: [

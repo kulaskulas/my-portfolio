@@ -1,14 +1,5 @@
 <template>
-  <!-- <div
-    class="absolute inset-0 pointer-events-none
-         bg-[linear-gradient(to_right,rgba(255,255,255,0.01)_1px,transparent_1px)]
-         bg-[size:56px_100%]">
-  </div> -->
-  <div
-    class="absolute inset-0 pointer-events-none
-      bg-[linear-gradient(to_right,rgba(255,255,255,0.02)_1px,transparent_1px)]
-      bg-[size:56px_100%]">
-  </div>
+  <GridBackground />
   <div class="flex items-center justify-center gap-20 h-full px-10">
     <div class="left-col max-w-2xl">
       <h1 class="text-white text-6xl leading-tight py-4">
@@ -56,7 +47,7 @@
       </div>
     </div>
 
-    <div class="right-col shrink-0">
+    <div class="right-col shrink-0 z-99">
       <img
         :src="profileImage"
         alt="Profile Image"
@@ -68,4 +59,5 @@
 
 <script setup>
   import profileImage from '../assets/images/profile.jpg';
+  import GridBackground from '@/components/ui/GridBackground.vue';
 </script>

@@ -1,9 +1,5 @@
 <template>
-  <div
-    class="absolute inset-0 pointer-events-none
-      bg-[linear-gradient(to_right,rgba(255,255,255,0.02)_1px,transparent_1px)]
-      bg-[size:56px_100%]">
-  </div>
+  <GridBackground/>
   <div class="w-full flex justify-center">
     <div class="w-full max-w-6xl p-10">
       <template v-for="(data, index) in yearsExperience" :key="index">
@@ -203,6 +199,7 @@
 <script setup>
   import { ref } from "vue";
   import { Icon } from "@iconify/vue";
+  import GridBackground from '@/components/ui/GridBackground.vue';
 const yearsExperience = ref([
   {
     year: 'September 2023 - Current',
