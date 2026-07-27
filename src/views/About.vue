@@ -13,7 +13,7 @@
           <div class="rounded-xl overflow-hidden border border-steel shadow-lg">
             <img
               :src="working1"
-              class="w-full h-full object-cover hover:scale-110 transition duration-300"
+              class="w-full h-full object-cover hover:scale-110 transition duration-300 z-99"
             />
           </div>
 
@@ -130,7 +130,7 @@
 
     <!-- Floating Image -->
     <div class="float-left w-[420px] mr-10 mb-8">
-      <div class="rounded-xl border border-steel bg-charcoal overflow-hidden shadow-lg">
+      <div class="rounded-xl border border-steel bg-charcoal overflow-hidden shadow-lg z-99">
         <img
           :src="working2"
           alt="Beyond Coding"
