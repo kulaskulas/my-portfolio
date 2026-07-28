@@ -14,7 +14,9 @@
   <div class="flex pt-10 h-screen">
     <SideBar />
 
-    <div class="flex-1 ml-80 flex flex-col">
+    <div 
+      class="flex-1 flex flex-col transition-all duration-300 ease-in-out"
+      :class="pageStore.isSidebarOpen ? 'ml-80' : 'ml-15'">
       <TopBar />
 
       <main class="flex-1 bg-graphite overflow-auto" id="main-content">
@@ -31,7 +33,8 @@
         >
           <footer
             v-if="showFooter"
-            class="fixed bottom-0 left-80 right-0 h-10 bg-charcoal border-t border-steel/30 flex items-center justify-between px-6 text-sm text-steel z-50"
+            class="fixed bottom-0 right-0 h-10 bg-charcoal border-t border-steel/30 flex items-center justify-between px-6 text-sm text-steel z-50 transition-all duration-300 ease-in-out"
+            :class="pageStore.isSidebarOpen ? 'left-80' : 'left-15'"
           >
             <div class="text-sage">
               © {{ new Date().getFullYear() }} Karl Cabangon

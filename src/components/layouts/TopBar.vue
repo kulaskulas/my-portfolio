@@ -4,7 +4,7 @@
       <template v-for="(page, index) in pageStore.pinnedPages" :key="index">
         
           <div 
-            class="flex justify-between w-70 self-end px-5 py-3 b rounded-tl-2xl rounded-tr-lg text-white"
+            class="flex justify-between w-70 self-end px-5 py-3 b rounded-tl-2xl rounded-tr-lg text-white transition-[width] duration-300 ease-in-out"
             :class="{
               'bg-active-tab': pageStore.activePage === page.name,
               'bg-carbon': pageStore.activePage !== page.name

@@ -13,6 +13,7 @@ export const usePageStore = defineStore('pageStore', () => {
   const pinnedPages = reactive(getCurrentPinnedPages()); // it serves as tabs
   // const selectedBlock = ref(null);
   const routeHistory = ref([])
+  const isSidebarOpen = ref(true)
 
   function setActivePage(page) {
     activePage.value = page.name;
@@ -73,6 +74,7 @@ export const usePageStore = defineStore('pageStore', () => {
   return {
     activePage,
     pinnedPages,
+    isSidebarOpen,
     getCurrentPinnedPages,
     unpinPage,
     setActivePage,
