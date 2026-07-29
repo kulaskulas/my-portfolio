@@ -1,25 +1,25 @@
 <template>
   <GridBackground />
-  <div class="flex w-full p-10 justify-center">
-     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+  <div class="flex w-full p-4 sm:p-6 md:p-8 justify-center">
+     <div class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 w-full max-w-7xl">
         <div
           v-for="item in stats"
           :key="item.title"
-          class="flex items-center gap-4 rounded-xl border border-steel bg-charcoal p-5 hover:border-orchid/50 transition-all"
+          class="flex items-center gap-3 sm:gap-4 rounded-xl border border-steel bg-charcoal p-3 sm:p-5 hover:border-orchid/50 transition-all"
         >
           <!-- Icon -->
           <div
-            class="flex h-12 w-12 items-center justify-center rounded-lg bg-topbar text-orchid text-2xl bg-orchid/10"
+            class="flex h-10 w-10 sm:h-12 sm:w-12 shrink-0 items-center justify-center rounded-lg bg-topbar text-orchid text-xl sm:text-2xl bg-orchid/10"
           >
             <Icon :icon="item.icon" />
           </div>
 
           <!-- Content -->
-          <div class="flex flex-col">
-            <span class="text-2xl font-bold text-sage">
+          <div class="flex flex-col min-w-0">
+            <span class="text-xl sm:text-2xl font-bold text-sage">
               {{ item.value }}
             </span>
-            <span class="text-sm text-white">
+            <span class="text-xs sm:text-sm text-white truncate">
               {{ item.title }}
             </span>
           </div>
@@ -28,45 +28,45 @@
   </div>
 
   <div
-    class="my-6 h-px bg-gradient-to-r from-transparent via-steel/40 to-transparent">
+    class="my-4 sm:my-6 h-px bg-gradient-to-r from-transparent via-steel/40 to-transparent">
   </div>
 
-  <div class="w-full px-6 md:px-10 lg:px-16 xl:px-20">
+  <div class="w-full px-4 sm:px-8 md:px-10 lg:px-16 xl:px-20">
     <div class="mx-auto max-w-7xl">
 
       <!-- Section Heading -->
-      <div class="mb-8">
-        <h2 class="mb-2 text-3xl text-keyword">
+      <div class="mb-6 sm:mb-8">
+        <h2 class="mb-2 text-2xl sm:text-3xl text-keyword font-bold">
           Technical Skills
         </h2>
 
-        <p class="max-w-3xl leading-7 text-white">
-          Over the past <span class="text-keyword">6+ years</span>, I've worked with a diverse
+        <p class="max-w-3xl leading-6 sm:leading-7 text-xs sm:text-base text-white">
+          Over the past <span class="text-keyword font-medium">6+ years</span>, I've worked with a diverse
           set of technologies to build scalable web applications, develop RESTful APIs,
           create responsive user interfaces, and deliver reliable software solutions.
         </p>
       </div>
       
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
         <div
           v-for="item in skills"
           :key="item.title"
-          class="flex items-center gap-4 rounded-xl border border-steel bg-charcoal p-5 hover:border-orchid/50 transition-all"
+          class="flex items-center gap-3 sm:gap-4 rounded-xl border border-steel bg-charcoal p-3.5 sm:p-5 hover:border-orchid/50 transition-all"
         >
           <!-- Icon -->
           <div
-            class="flex h-12 w-12 items-center justify-center rounded-lg text-2xl"
+            class="flex h-10 w-10 sm:h-12 sm:w-12 shrink-0 items-center justify-center rounded-lg text-xl sm:text-2xl"
             :style="{ backgroundColor: `${item.bg_color}14` }"
           >
             <Icon :icon="item.icon" color="#C595C6"/>
           </div>
 
           <!-- Content -->
-          <div class="flex flex-col">
-            <span class="text-2xl leading-relaxed text-keyword">
+          <div class="flex flex-col min-w-0">
+            <span class="text-base sm:text-xl font-bold leading-snug text-keyword truncate">
               {{ item.title }}
             </span>
-            <span class="text-sm text-white">
+            <span class="text-xs sm:text-sm text-white truncate">
               {{ item.description }}
             </span>
           </div>
@@ -75,7 +75,7 @@
     </div>
   </div>
 
-  <div class="pb-20"></div>
+  <div class="pb-6 sm:pb-8"></div>
 
 </template>
 

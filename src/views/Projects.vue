@@ -2,7 +2,7 @@
   <GridBackground />
 
   <div class="w-full flex justify-center">
-    <div class="w-full max-w-6xl p-10">
+    <div class="w-full max-w-6xl p-4 sm:p-6 md:p-8">
       <template v-for="(data, index) in projects" :key="index">
         <!-- Timeline Item -->
         <div class="relative pb-6">
@@ -16,7 +16,7 @@
 
           <!-- Year -->
           <div
-            class="relative z-10 flex items-center gap-1 py-1 cursor-pointer hover:bg-topbar rounded w-full"
+            class="relative z-10 flex items-center gap-1 py-1 px-1 cursor-pointer hover:bg-topbar rounded w-full"
             @click="data.expanded = !data.expanded"
           >
             <Icon
@@ -26,7 +26,7 @@
               :class="{ 'rotate-90': data.expanded }"
             />
 
-            <p class="text-sm text-white">
+            <p class="text-xs sm:text-sm font-semibold text-white">
               {{ data.period }}
             </p>
           </div>
@@ -42,19 +42,19 @@
           >
             <div
               v-if="data.expanded"
-              class="overflow-hidden ml-6 mt-4 space-y-6"
+              class="overflow-hidden ml-2 sm:ml-6 mt-4 space-y-6"
             >
 
               <div
                 v-for="(category, i) in data.categories"
                 :key="i"
-                class="grid grid-cols-[180px_1fr] gap-8 items-start"
+                class="grid grid-cols-1 md:grid-cols-[180px_1fr] gap-2 md:gap-8 items-start"
               >
                 <!-- Left -->
-                <div class="flex items-center gap-3 py-3">
-                  <span class="w-4 border-t border-steel/40"></span>
+                <div class="flex items-center gap-2 md:gap-3 py-1 md:py-3">
+                  <span class="hidden md:block w-4 border-t border-steel/40"></span>
 
-                  <p class="text-teal font-medium">
+                  <p class="text-teal font-medium text-xs sm:text-sm md:text-base">
                     {{ category.title }}
                   </p>
                 </div>
@@ -70,7 +70,7 @@
 
                     <!-- Header -->
                     <div
-                      class="flex items-center justify-between px-4 py-2 bg-topbar border-b border-steel/30"
+                      class="flex items-center justify-between px-3 sm:px-4 py-2 bg-topbar border-b border-steel/30"
                     >
                       <div class="flex items-center gap-2">
                         <Icon
@@ -91,21 +91,21 @@
                     </div>
 
                     <!-- Body -->
-                    <div class="p-6">
+                    <div class="p-4 sm:p-6">
 
-                      <h3 class="text-orchid text-2xl mb-5">
+                      <h3 class="text-orchid text-xl sm:text-2xl font-bold mb-3 sm:mb-5">
                         {{ project.name }}
                       </h3>
                       
                       <!-- Description -->
-                      <p class="text-white leading-relaxed text-[15px] mb-5">
+                      <p class="text-white leading-relaxed text-sm sm:text-[15px] mb-5">
                         {{ project.description }}
                       </p>
 
                       <!-- Gallery -->
                       <div
                         v-if="project.screenshots?.length"
-                        class="mb-15"
+                        class="mb-6 sm:mb-10"
                       >
                         <!-- 1 Screenshot -->
                         <div
@@ -121,12 +121,12 @@
                         <!-- 2 Screenshots -->
                         <div
                           v-else-if="project.screenshots.length === 2"
-                          class="grid grid-cols-3 gap-2 h-60"
+                          class="grid grid-cols-1 sm:grid-cols-3 gap-2 h-auto sm:h-60"
                         >
 
                           <!-- Featured -->
                           <div
-                            class="col-span-2 overflow-hidden rounded-lg border border-steel/30"
+                            class="col-span-1 sm:col-span-2 overflow-hidden rounded-lg border border-steel/30 h-48 sm:h-full"
                           >
                             <img
                               :src="project.screenshots[0]"
@@ -136,7 +136,7 @@
 
                           <!-- Side -->
                           <div
-                            class="overflow-hidden rounded-lg border border-steel/30"
+                            class="overflow-hidden rounded-lg border border-steel/30 h-48 sm:h-full"
                           >
                             <img
                               :src="project.screenshots[1]"
@@ -149,12 +149,12 @@
                         <!-- 3+ Screenshots -->
                         <div
                           v-else
-                          class="grid grid-cols-3 gap-2 h-60"
+                          class="grid grid-cols-1 sm:grid-cols-3 gap-2 h-auto sm:h-60"
                         >
 
                           <!-- Featured -->
                           <div
-                            class="col-span-2 overflow-hidden rounded-lg border border-steel/30"
+                            class="col-span-1 sm:col-span-2 overflow-hidden rounded-lg border border-steel/30 h-48 sm:h-full"
                           >
                             <img
                               :src="project.screenshots[0]"
@@ -163,12 +163,12 @@
                           </div>
 
                           <!-- Right Side -->
-                          <div class="grid grid-rows-2 gap-2">
+                          <div class="grid grid-cols-2 sm:grid-cols-1 sm:grid-rows-2 gap-2">
 
                             <div
                               v-for="(image, idx) in project.screenshots.slice(1, 3)"
                               :key="idx"
-                              class="overflow-hidden rounded-lg border border-steel/30"
+                              class="overflow-hidden rounded-lg border border-steel/30 h-32 sm:h-full"
                             >
                               <img
                                 :src="image"
@@ -182,18 +182,18 @@
 
                       </div>
 
-                      <div class="flex justify-between">
-                        <div class="pr-4">
-                          <h3 class="text-orchid text-xl mb-4">
+                      <div class="flex flex-col lg:flex-row justify-between gap-6">
+                        <div class="pr-0 lg:pr-4 flex-1">
+                          <h3 class="text-orchid text-lg sm:text-xl font-bold mb-3 sm:mb-4">
                             {{ project.type === 'work' ? 'Key Contributions' : 'Features'}}
                             
                           </h3>
 
-                          <ul class="space-y-3">
+                          <ul class="space-y-2.5 sm:space-y-3">
                             <li
                               v-for="(feat, idx) in project.features"
                               :key="idx"
-                              class="flex items-start gap-3 text-white"
+                              class="flex items-start gap-2.5 sm:gap-3 text-white"
                             >
                               <Icon
                                 icon="mdi:check-circle-outline"
@@ -201,42 +201,38 @@
                                 class="text-keyword mt-0.5 shrink-0"
                               />
 
-                              <span class="leading-relaxed text-sm">{{ feat }}</span>
+                              <span class="leading-relaxed text-xs sm:text-sm">{{ feat }}</span>
                             </li>
                           </ul>
                         </div>
-                        <div>
-                          <h3 class="text-orchid text-xl mb-4">
+                        <div class="flex-1">
+                          <h3 class="text-orchid text-lg sm:text-xl font-bold mb-3 sm:mb-4">
                             Technologies
                           </h3>
 
-                          <div class="flex flex-wrap gap-3">
+                          <div class="flex flex-wrap gap-2 sm:gap-3">
                             <span
                               v-for="(tech, idx) in project.technologies"
                               :key="idx"
-                              class="px-3 py-1 rounded-md bg-topbar border border-steel/30 text-keyword text-sm"
+                              class="px-2.5 py-1 rounded-md bg-topbar border border-steel/30 text-keyword text-xs sm:text-sm font-medium"
                             >
                               {{ tech }}
                             </span>
                           </div>
 
-                          <div class="space-y-2 text-sage">
-                            <div class="my-5 w-full h-px bg-steel/40"></div>
-                            <!-- <p>
-                              <span class="text-keyword">Status:</span>
-                              {{ project.status }}
-                            </p> -->
+                          <div class="space-y-2 text-xs sm:text-sm text-sage">
+                            <div class="my-4 sm:my-5 w-full h-px bg-steel/40"></div>
 
                             <p>
-                              <span class="text-keyword">Period:</span>
+                              <span class="text-keyword font-medium">Period:</span>
                               {{ project.period }}
                             </p>
 
-                            <p>
-                              <span class="text-keyword">Type:</span>
+                            <p class="flex items-center">
+                              <span class="text-keyword font-medium">Type:</span>
 
                               <span
-                                class="capitalize px-2 py-1 rounded text-xs ml-2"
+                                class="capitalize px-2 py-0.5 rounded text-xs ml-2"
                                 :class="project.type === 'personal'
                                   ? 'bg-green-500/10 text-green-400 border border-green-500/20'
                                   : 'bg-blue-500/10 text-blue-400 border border-blue-500/20'"
@@ -245,10 +241,10 @@
                               </span>
                             </p>
 
-                            <p v-if="project.demo">
-                              <span class="text-keyword">Demo:</span>
+                            <p v-if="project.demo" class="break-all">
+                              <span class="text-keyword font-medium">Demo:</span>
 
-                              <a :href="project?.demo" class="px-2 py-1 text-primary" :disabled="project?.demo" target="_blank">{{ project?.demo }}</a>
+                              <a :href="project?.demo" class="px-2 py-1 text-primary hover:underline" target="_blank">{{ project?.demo }}</a>
                             </p>
                           </div>
                         </div>

@@ -11,61 +11,49 @@
 
 <template>
   <Header />
-  <div class="flex pt-10 h-screen">
+  <div class="flex pt-10 h-screen overflow-hidden">
     <SideBar />
 
     <div 
-      class="flex-1 flex flex-col transition-all duration-300 ease-in-out"
-      :class="pageStore.isSidebarOpen ? 'ml-80' : 'ml-15'">
+      class="flex-1 flex flex-col min-w-0 transition-all duration-300 ease-in-out"
+      :class="pageStore.isSidebarOpen ? 'ml-0 md:ml-80' : 'ml-0 md:ml-15'">
       <TopBar />
 
-      <main class="flex-1 bg-graphite overflow-auto" id="main-content">
-        <RouterView />
+      <main class="flex-1 bg-graphite overflow-auto flex flex-col relative" id="main-content">
+        <div class="flex-1">
+          <RouterView />
+        </div>
 
-
-        <Transition
-          enter-active-class="transition-all duration-300"
-          enter-from-class="translate-y-full opacity-0"
-          enter-to-class="translate-y-0 opacity-100"
-          leave-active-class="transition-all duration-300"
-          leave-from-class="translate-y-0 opacity-100"
-          leave-to-class="translate-y-full opacity-0"
+        <footer
+          class="w-full bg-charcoal border-t border-steel/30 flex flex-col sm:flex-row items-center justify-between px-4 sm:px-6 py-3 sm:py-2.5 text-xs sm:text-sm text-steel gap-2 sm:gap-0 mt-auto shrink-0"
         >
-          <footer
-            v-if="showFooter"
-            class="fixed bottom-0 right-0 h-10 bg-charcoal border-t border-steel/30 flex items-center justify-between px-6 text-sm text-steel z-50 transition-all duration-300 ease-in-out"
-            :class="pageStore.isSidebarOpen ? 'left-80' : 'left-15'"
-          >
-            <div class="text-sage">
-              © {{ new Date().getFullYear() }} Karl Cabangon
-            </div>
+          <div class="text-sage text-center sm:text-left">
+            © {{ new Date().getFullYear() }} Karl Cabangon
+          </div>
 
-            <div class="flex items-center text-sage text-sm">
-              <span>Software Engineer</span>
+          <div class="flex flex-wrap items-center justify-center text-sage text-xs sm:text-sm gap-1.5 sm:gap-0">
+            <span class="hidden sm:inline">Software Engineer</span>
 
-              <span class="mx-4 h-4 w-px bg-steel/40"></span>
+            <span class="hidden sm:inline mx-3 h-4 w-px bg-steel/40"></span>
 
-              <span>
-                Built with
-                <span class="text-keyword">Vue 3</span> &
-                <span class="text-keyword">Tailwind CSS</span>
-              </span>
+            <span class="text-center">
+              Built with
+              <span class="text-keyword font-medium">Vue 3</span> &
+              <span class="text-keyword font-medium">Tailwind CSS</span>
+            </span>
 
-              <span class="mx-4 h-4 w-px bg-steel/40"></span>
+            <span class="mx-2 sm:mx-3 h-4 w-px bg-steel/40"></span>
 
-              <a
-                href="https://mail.google.com/mail/?view=cm&fs=1&to=karlcabangon24@email.com"
-                target="_blank"
-                class="text-orchid font-medium cursor-pointer"
-              >
-                Open to Opportunities
-              </a>
-            </div>
-          </footer>
-        </Transition>
+            <a
+              href="https://mail.google.com/mail/?view=cm&fs=1&to=karlcabangon24@email.com"
+              target="_blank"
+              class="text-orchid font-medium cursor-pointer hover:underline"
+            >
+              Open to Opportunities
+            </a>
+          </div>
+        </footer>
       </main>
-
-      
 
     </div>
   </div>
@@ -76,23 +64,15 @@
   import SideBar from './components/layouts/SideBar.vue';
   import Header from './components/layouts/Header.vue';
   import { useRoute } from 'vue-router'
-  import { watch, ref, onMounted, onUnmounted } from 'vue';
+  import { watch } from 'vue';
   import { usePageStore } from './stores';
 
   const pageStore = usePageStore();
   const route = useRoute()
 
-  const showFooter = ref(false)
-
   watch(
     () => ({ name: route.name, path: route.path }),
     ({ name, path }) => {
-      showFooter.value = false
-
-      requestAnimationFrame(() => {
-        handleScroll()
-      })
-
       if (!name) return
 
       localStorage.setItem("activePage", name)
@@ -114,29 +94,6 @@
     },
     { immediate: true }
   )
-  
-
-  
-
-  const handleScroll = () => {
-    const main = document.querySelector('#main-content')
-    if (!main) return
-
-    showFooter.value =
-      main.scrollTop + main.clientHeight >= main.scrollHeight - 10
-  }
-
-  onMounted(() => {
-    const main = document.querySelector('#main-content')
-    main?.addEventListener('scroll', handleScroll)
-    handleScroll()
-  })
-
-  onUnmounted(() => {
-    const main = document.querySelector('#main-content')
-    main?.removeEventListener('scroll', handleScroll)
-  })
-  
 </script>
 
 <style scoped>

@@ -1,19 +1,19 @@
 <template>
   <GridBackground />
-<div class="w-full p-10">
-  <div class="max-w-6xl mx-auto mt-10">
+<div class="w-full p-4 sm:p-6 md:p-8">
+  <div class="max-w-6xl mx-auto mt-1 sm:mt-2">
 
-    <section class="text-white text-lg leading-8">
+    <section class="text-white text-base sm:text-lg leading-7 sm:leading-8">
 
       <!-- Float Image -->
-      <div class="float-left w-[500px] mr-10 mb-8">
+      <div class="w-full md:w-[450px] lg:w-[500px] md:float-left md:mr-10 mb-6 md:mb-8">
 
-        <div class="grid grid-cols-2 gap-5 auto-rows-[190px]">
+        <div class="grid grid-cols-2 gap-3 sm:gap-5 auto-rows-[130px] sm:auto-rows-[190px]">
 
           <div class="rounded-xl overflow-hidden border border-steel shadow-lg">
             <img
               :src="working1"
-              class="w-full h-full object-cover hover:scale-110 transition duration-300 z-99"
+              class="w-full h-full object-cover hover:scale-110 transition duration-300 z-10"
             />
           </div>
 
@@ -42,15 +42,15 @@
 
       </div>
 
-      <h1 class="text-6xl text-sage mb-6">
+      <h1 class="text-3xl sm:text-5xl md:text-6xl text-sage mb-4 sm:mb-6 font-bold">
         About Me
       </h1>
 
       <p class="mb-6">
         I'm a <span class="text-orchid">Software Engineer</span> with over
-        <span class="text-keyword">six years of experience</span> developing
-        <span class="text-keyword">web applications</span>. I began my professional
-        career in <span class="text-keyword">2019</span> as a
+        <span class="text-keyword font-medium">six years of experience</span> developing
+        <span class="text-keyword font-medium">web applications</span>. I began my professional
+        career in <span class="text-keyword font-medium">2019</span> as a
         <span class="text-orchid">Programmer</span> at a local company in the
         Philippines, where I was responsible for maintaining and improving
         existing business systems.
@@ -58,12 +58,12 @@
 
       <p class="mb-2">
         One of my earliest challenges was modernizing a legacy
-        <span class="text-keyword">application</span> by migrating it to a more
-        <span class="text-keyword">maintainable architecture</span> while also
+        <span class="text-keyword font-medium">application</span> by migrating it to a more
+        <span class="text-keyword font-medium font-medium">maintainable architecture</span> while also
         contributing to the development of new
-        <span class="text-keyword">web-based solutions</span>. During this time,
+        <span class="text-keyword font-medium">web-based solutions</span>. During this time,
         I gained experience working with
-        <span class="text-keyword">content management systems (CMS)</span>,
+        <span class="text-keyword font-medium">content management systems (CMS)</span>,
         including WordPress.
       </p>
 
@@ -81,21 +81,21 @@
             After the pandemic, I joined a new company where I was entrusted with
             <span class="text-orchid">leading the development</span> of several
             projects. The role strengthened not only my
-            <span class="text-keyword">technical skills</span> but also my ability
+            <span class="text-keyword font-medium">technical skills</span> but also my ability
             to take ownership and collaborate with cross-functional teams.
           </p>
 
           <p class="mb-6">
             In my current role as a
             <span class="text-orchid">Software Engineer</span>, I initially worked
-            across both <span class="text-keyword">backend</span> and
-            <span class="text-keyword">frontend development</span>, giving me a
+            across both <span class="text-keyword font-medium">backend</span> and
+            <span class="text-keyword font-medium">frontend development</span>, giving me a
             broader understanding of the complete application lifecycle.
           </p>
 
           <p class="mb-6">
             As the team's needs evolved, I transitioned into focusing primarily on
-            <span class="text-keyword">frontend development</span>, where I build
+            <span class="text-keyword font-medium">frontend development</span>, where I build
             intuitive, responsive, and user-friendly interfaces while working
             closely with backend engineers and designers.
           </p>
@@ -112,7 +112,7 @@
 
       <button
         @click="expanded = !expanded"
-        class="mt-2 text-orchid hover:text-white transition cursor-pointer"
+        class="mt-2 text-orchid hover:text-white transition cursor-pointer font-medium"
       >
         {{ expanded ? 'Read Less ↑' : 'Read More →' }}
       </button>
@@ -125,30 +125,30 @@
   </div>
 </div>
 
- <div class="w-full p-10">
+ <div class="w-full p-4 sm:p-8 md:p-10">
   <div class="max-w-6xl mx-auto">
 
     <!-- Floating Image -->
-    <div class="float-left w-[420px] mr-10 mb-8">
-      <div class="rounded-xl border border-steel bg-charcoal overflow-hidden shadow-lg z-99">
+    <div class="w-full md:w-[380px] lg:w-[420px] md:float-left md:mr-10 mb-6 md:mb-8">
+      <div class="rounded-xl border border-steel bg-charcoal overflow-hidden shadow-lg z-10">
         <img
           :src="working2"
           alt="Beyond Coding"
-          class="w-full h-[650px] object-cover transition-transform duration-300 hover:scale-110"
+          class="w-full h-[320px] sm:h-[480px] md:h-[650px] object-cover transition-transform duration-300 hover:scale-105"
         />
       </div>
     </div>
 
-    <h1 class="text-4xl text-sage mb-8">
+    <h1 class="text-3xl sm:text-4xl text-sage mb-6 sm:mb-8 font-bold">
       Beyond Coding
     </h1>
 
     <!-- Music -->
-    <h2 class="text-2xl text-keyword mb-3">
+    <h2 class="text-xl sm:text-2xl text-keyword mb-3 font-semibold">
       🎸 Music
     </h2>
 
-    <p class="text-white text-lg leading-8 mb-6">
+    <p class="text-white text-base sm:text-lg leading-7 sm:leading-8 mb-6">
       Music has always been one of my biggest passions. During my free
       time, I enjoy playing musical instruments, especially the
       <span class="text-orchid">guitar</span>. It's a great way for me to
@@ -156,18 +156,18 @@
       spending hours writing code.
     </p>
 
-    <p class="text-white text-lg leading-8 mb-10">
+    <p class="text-white text-base sm:text-lg leading-7 sm:leading-8 mb-8 sm:mb-10">
       Learning new songs reminds me that improvement comes through patience
       and consistent practice—the same mindset I apply when learning new
       technologies and solving programming challenges.
     </p>
 
     <!-- Cats -->
-    <h2 class="text-2xl text-keyword mb-3">
+    <h2 class="text-xl sm:text-2xl text-keyword mb-3 font-semibold">
       🐱 Cats
     </h2>
 
-    <p class="text-white text-lg leading-8 mb-5">
+    <p class="text-white text-base sm:text-lg leading-7 sm:leading-8 mb-5">
       I'm also an animal lover and spend a lot of my free time with my
       <span class="text-orchid">cats</span>. Whether they're following me
       around the house or keeping me company while I work, they always
@@ -187,25 +187,25 @@
     >
       <div
         v-if="expandedBC"
-        class="space-y-10"
+        class="space-y-8 sm:space-y-10"
       >
 
         <!-- Gaming -->
         <div>
-          <h2 class="text-2xl text-keyword mb-3">
+          <h2 class="text-xl sm:text-2xl text-keyword mb-3 font-semibold">
             🎮 Gaming
           </h2>
 
-          <p class="text-white text-lg leading-8 mb-6">
+          <p class="text-white text-base sm:text-lg leading-7 sm:leading-8 mb-6">
             When I want to completely disconnect from work, I enjoy playing
             <span class="text-orchid">mobile games</span>, especially with
             friends. Some of my favorites are
-            <span class="text-keyword">Call of Duty: Mobile (CODM)</span>,
-            <span class="text-keyword">Clash of Clans (COC)</span>, and
-            <span class="text-keyword">League of Legends: Wild Rift</span>.
+            <span class="text-keyword font-medium">Call of Duty: Mobile (CODM)</span>,
+            <span class="text-keyword font-medium">Clash of Clans (COC)</span>, and
+            <span class="text-keyword font-medium">League of Legends: Wild Rift</span>.
           </p>
 
-          <p class="text-white text-lg leading-8">
+          <p class="text-white text-base sm:text-lg leading-7 sm:leading-8">
             Whether it's competing in ranked matches, planning strategies
             with teammates, or simply enjoying a few casual games, gaming is
             another hobby that helps me relax while also sharpening my
@@ -214,14 +214,14 @@
         </div>
 
         <!-- Closing -->
-        <div class="border-t border-steel pt-8">
-          <p class="text-white text-lg leading-8">
+        <div class="border-t border-steel pt-6 sm:pt-8">
+          <p class="text-white text-base sm:text-lg leading-7 sm:leading-8">
             Outside of software development, I believe having hobbies is just
             as important as writing great code. Whether I'm playing the
-            <span class="text-keyword">guitar</span>, spending time with my
-            <span class="text-keyword">cats</span>, or enjoying a few matches
+            <span class="text-keyword font-medium">guitar</span>, spending time with my
+            <span class="text-keyword font-medium">cats</span>, or enjoying a few matches
             in my favorite
-            <span class="text-keyword">mobile games</span>, these activities
+            <span class="text-keyword font-medium">mobile games</span>, these activities
             help me stay creative, curious, and motivated. They allow me to
             return to development with a fresh perspective, renewed energy,
             and the same enthusiasm for building meaningful software.
@@ -233,7 +233,7 @@
 
     <button
       @click="expandedBC = !expandedBC"
-      class=" text-orchid hover:text-white text-lg transition cursor-pointer"
+      class="text-orchid hover:text-white text-base sm:text-lg transition cursor-pointer font-medium"
       :class="expandedBC ? 'mt-5' : ''"
     >
       {{ expandedBC ? 'Read Less ↑' : 'Read More →' }}

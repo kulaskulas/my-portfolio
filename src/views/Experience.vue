@@ -1,7 +1,7 @@
 <template>
   <GridBackground/>
   <div class="w-full flex justify-center">
-    <div class="w-full max-w-6xl p-10">
+    <div class="w-full max-w-6xl p-4 sm:p-6 md:p-8">
       <template v-for="(data, index) in yearsExperience" :key="index">
         <!-- Timeline Item -->
         <div class="relative pb-6">
@@ -15,7 +15,7 @@
 
           <!-- Year -->
           <div
-            class="relative z-10 flex items-center gap-1 py-1 cursor-pointer hover:bg-topbar rounded w-full"
+            class="relative z-10 flex items-center gap-1 py-1 px-1 cursor-pointer hover:bg-topbar rounded w-full"
             @click="data.expanded = !data.expanded"
           >
             <Icon
@@ -25,7 +25,7 @@
               :class="{ 'rotate-90': data.expanded }"
             />
 
-            <p class="text-sm text-white">
+            <p class="text-xs sm:text-sm font-semibold text-white">
               {{ data.year }}
             </p>
           </div>
@@ -41,22 +41,22 @@
           >
             <div
               v-if="data.expanded"
-              class="overflow-hidden ml-6 mt-4 space-y-6"
+              class="overflow-hidden ml-2 sm:ml-6 mt-4 space-y-6"
             >
 
               <div
                 v-for="(child, i) in data.children"
                 :key="i"
-                class="grid grid-cols-[180px_1fr] gap-8 items-start"
+                class="grid grid-cols-1 md:grid-cols-[180px_1fr] gap-2 md:gap-8 items-start"
               >
 
                 <!-- Left Label -->
-                <div class="relative pl-6 py-3">
+                <div class="relative pl-4 md:pl-6 py-1 md:py-3">
                   <span
-                    class="absolute left-0 top-1/2 w-4 border-t border-steel/40"
+                    class="hidden md:block absolute left-0 top-1/2 w-4 border-t border-steel/40"
                   ></span>
 
-                  <p class="text-teal font-medium">
+                  <p class="text-teal font-medium text-xs sm:text-sm md:text-base">
                     {{ child.label }}
                   </p>
                 </div>
@@ -68,7 +68,7 @@
 
                   <!-- Header -->
                   <div
-                    class="flex items-center justify-between px-4 py-2 bg-topbar border-b border-steel/30"
+                    class="flex items-center justify-between px-3 sm:px-4 py-2 bg-topbar border-b border-steel/30"
                   >
                     <div class="flex items-center gap-2">
                       <Icon
@@ -89,53 +89,53 @@
                   </div>
 
                   <!-- Content -->
-                  <div class="p-5">
+                  <div class="p-4 sm:p-5">
 
                     <!-- Company -->
                     <template v-if="child.label === 'Company'">
-                      <h3 class="text-orchid text-xl mb-4">
+                      <h3 class="text-orchid text-lg sm:text-xl font-bold mb-3 sm:mb-4">
                         {{ child.value.name }}
                       </h3>
 
-                      <div class="space-y-2 text-sage">
-                        <p><span class="text-keyword">Industry:</span> {{ child.value.industry }}</p>
-                        <p><span class="text-keyword">Location:</span> {{ child.value.location }}</p>
-                        <p><span class="text-keyword">Website:</span> {{ child.value.website }}</p>
+                      <div class="space-y-2 text-sm sm:text-base text-sage">
+                        <p><span class="text-keyword font-medium">Industry:</span> {{ child.value.industry }}</p>
+                        <p><span class="text-keyword font-medium">Location:</span> {{ child.value.location }}</p>
+                        <p><span class="text-keyword font-medium">Website:</span> <a :href="child.value.website" target="_blank" class="hover:underline text-orchid/80">{{ child.value.website }}</a></p>
                       </div>
                     </template>
 
                     <!-- Position -->
                     <template v-else-if="child.label === 'Position'">
-                      <h3 class="text-orchid text-xl mb-4">
+                      <h3 class="text-orchid text-lg sm:text-xl font-bold mb-3 sm:mb-4">
                         {{ child.value.title }}
                       </h3>
 
-                      <div class="space-y-2 text-sage">
-                        <p><span class="text-keyword">Team:</span> {{ child.value.team }}</p>
-                        <p><span class="text-keyword">Employment:</span> {{ child.value.type }}</p>
+                      <div class="space-y-2 text-sm sm:text-base text-sage">
+                        <p><span class="text-keyword font-medium">Team:</span> {{ child.value.team }}</p>
+                        <p><span class="text-keyword font-medium">Employment:</span> {{ child.value.type }}</p>
                       </div>
                     </template>
 
                     <!-- Duration -->
                     <template v-else-if="child.label === 'Duration'">
-                      <div class="space-y-2 text-sage">
-                        <p><span class="text-keyword">Period:</span> {{ child.value.period }}</p>
-                        <p><span class="text-keyword">Length:</span> {{ child.value.length }}</p>
+                      <div class="space-y-2 text-sm sm:text-base text-sage">
+                        <p><span class="text-keyword font-medium">Period:</span> {{ child.value.period }}</p>
+                        <p><span class="text-keyword font-medium">Length:</span> {{ child.value.length }}</p>
                       </div>
                     </template>
 
                     <!-- Responsibilities -->
                     <template v-else-if="child.label === 'Responsibilities'">
                       <div>
-                        <h3 class="text-orchid text-xl mb-4">
+                        <h3 class="text-orchid text-lg sm:text-xl font-bold mb-3 sm:mb-4">
                           Responsibilities
                         </h3>
 
-                        <ul class="space-y-3">
+                        <ul class="space-y-2.5 sm:space-y-3">
                           <li
                             v-for="(item, idx) in child.value"
                             :key="idx"
-                            class="flex items-start gap-3 text-white"
+                            class="flex items-start gap-2.5 sm:gap-3 text-white text-xs sm:text-sm md:text-base"
                           >
                             <Icon
                               icon="mdi:check-circle-outline"
@@ -152,15 +152,15 @@
                     <!-- Technologies -->
                     <template v-else-if="child.label === 'Technologies'">
                       <div>
-                        <h3 class="text-orchid text-xl mb-4">
+                        <h3 class="text-orchid text-lg sm:text-xl font-bold mb-3 sm:mb-4">
                           Technologies
                         </h3>
 
-                        <div class="flex flex-wrap gap-3">
+                        <div class="flex flex-wrap gap-2 sm:gap-3">
                           <span
                             v-for="(tech, idx) in child.value"
                             :key="idx"
-                            class="px-3 py-1 rounded-md bg-topbar border border-steel/30 text-keyword text-sm"
+                            class="px-2.5 py-1 rounded-md bg-topbar border border-steel/30 text-keyword text-xs sm:text-sm font-medium"
                           >
                             {{ tech }}
                           </span>
@@ -188,12 +188,6 @@
       </template>
     </div>
   </div>
-  
-  
-
-
-
-  
 </template>
 
 <script setup>
