@@ -21,7 +21,7 @@
       </div>
 
       <div class="flex flex-col sm:flex-row cta-buttons mt-4 gap-3 sm:gap-5 w-full sm:w-auto">
-        <button
+        <!-- <button
           class="w-full sm:w-auto flex-1 rounded-md border border-topbar bg-tab
             px-5 py-2.5 text-white text-sm sm:text-base font-medium
             transition-all duration-150
@@ -32,9 +32,26 @@
             cursor-pointer"
         >
           Download my CV
-        </button>
-        <button
-          class="w-full sm:w-auto flex-1 rounded-md bg-primary
+        </button> -->
+        <a
+          href="/Karl-Cabangon-CV.pdf"
+          download="Karl-Cabangon-CV.pdf"
+          class="w-full sm:w-auto flex-1 inline-flex items-center justify-center rounded-md border border-topbar bg-tab
+            px-5 py-2.5 text-white text-sm sm:text-base font-medium
+            transition-all duration-150
+            hover:bg-slate
+            active:translate-y-px
+            active:bg-sidebar
+            shadow-sm
+            cursor-pointer"
+        >
+          Download my CV
+        </a>
+        <a
+          href="https://mail.google.com/mail/?view=cm&fs=1&to=karlcabangon24@gmail.com&su=Let's%20Work%20Together"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="w-full sm:w-auto flex-1 inline-flex items-center justify-center rounded-md bg-primary
             px-5 py-2.5 text-white text-sm sm:text-base font-medium
             transition-all duration-200
             hover:brightness-110
@@ -42,8 +59,8 @@
             shadow-lg shadow-primary/20
             cursor-pointer"
         >
-          Discuss Your Project
-        </button>
+          Let's Work Together
+        </a>
       </div>
     </div>
 
@@ -58,6 +75,7 @@
 </template>
 
 <script setup>
-  import profileImage from '../assets/images/profile.jpg';
+  // import profileImage from '../assets/images/profile.jpg';
+  import profileImage from '../assets/images/avatar1.jpg';
   import GridBackground from '@/components/ui/GridBackground.vue';
 </script>

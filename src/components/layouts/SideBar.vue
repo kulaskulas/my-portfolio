@@ -86,6 +86,85 @@
         </li>
       </ul>
     </nav>
+
+    <!-- Bottom Contact -->
+    <Transition
+      enter-active-class="transition-all duration-200 ease-out"
+      enter-from-class="opacity-0 blur-sm translate-y-2"
+      enter-to-class="opacity-0 blur-0 translate-y-0"
+      leave-active-class="transition-all duration-150 ease-in"
+      leave-from-class="opacity-0 blur-0 translate-y-0"
+      leave-to-class="opacity-0 blur-sm translate-y-2"
+    >
+      <div
+      v-if="pageStore.isSidebarOpen || pageStore.isMobileSidebarOpen"
+      class="absolute bottom-0 left-0 w-full border-t border-steel/20 bg-obsidian p-5"
+    >
+      <p class="mb-4 text-xs uppercase tracking-widest text-steel">
+        Connect
+      </p>
+
+      <div class="space-y-4">
+        <a
+          href="https://mail.google.com/mail/?view=cm&fs=1&to=karlcabangon24@email.com"
+          class="group flex items-start gap-3"
+        >
+          <Icon
+            icon="mdi:email-outline"
+            class="mt-0.5 shrink-0 text-lg text-orchid"
+          />
+
+          <div class="min-w-0">
+            <p class="text-xs text-steel">Email</p>
+            <p class="break-all text-sm text-white transition-colors group-hover:text-orchid">
+              karlcabangon24@gmail.com
+            </p>
+          </div>
+        </a>
+
+        <a
+          href="https://github.com/kulaskulas"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="group flex items-start gap-3"
+        >
+          <Icon
+            icon="mdi:github"
+            class="mt-0.5 shrink-0 text-lg text-orchid"
+          />
+
+          <div class="min-w-0">
+            <p class="text-xs text-steel">GitHub</p>
+            <p class="break-all text-sm text-white transition-colors group-hover:text-orchid">
+              github.com/kulaskulas
+            </p>
+          </div>
+        </a>
+
+        <a
+          href="https://www.linkedin.com/in/karl-cabangon-47aaa71b6/"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="group flex items-start gap-3"
+        >
+          <Icon
+            icon="mdi:linkedin"
+            class="mt-0.5 shrink-0 text-lg text-orchid"
+          />
+
+          <div class="min-w-0">
+            <p class="text-xs text-steel">LinkedIn</p>
+            <p class="break-all text-sm text-white transition-colors group-hover:text-orchid">
+              linkedin.com/in/karl-cabangon-47aaa71b6
+            </p>
+          </div>
+        </a>
+      </div>
+    </div>
+  
+    </Transition>
+    
+
   </aside>
 </template>
 

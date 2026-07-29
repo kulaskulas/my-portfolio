@@ -12,28 +12,28 @@
 
           <div class="rounded-xl overflow-hidden border border-steel shadow-lg">
             <img
-              :src="working1"
+              :src="abt1"
               class="w-full h-full object-cover hover:scale-110 transition duration-300 z-10"
             />
           </div>
 
           <div class="row-span-2 rounded-xl overflow-hidden border border-steel shadow-lg rotate-[-1deg]">
             <img
-              :src="working1"
+              :src="abt4"
               class="w-full h-full object-cover hover:scale-110 transition duration-300"
             />
           </div>
 
           <div class="rounded-xl overflow-hidden border border-steel shadow-lg rotate-[1deg]">
             <img
-              :src="working1"
+              :src="abt2"
               class="w-full h-full object-cover hover:scale-110 transition duration-300"
             />
           </div>
 
           <div class="col-span-2 rounded-xl overflow-hidden border border-steel shadow-lg">
             <img
-              :src="working1"
+              :src="abt3"
               class="w-full h-full object-cover hover:scale-110 transition duration-300"
             />
           </div>
@@ -132,7 +132,7 @@
     <div class="w-full md:w-[380px] lg:w-[420px] md:float-left md:mr-10 mb-6 md:mb-8">
       <div class="rounded-xl border border-steel bg-charcoal overflow-hidden shadow-lg z-10">
         <img
-          :src="working2"
+          :src="abt5"
           alt="Beyond Coding"
           class="w-full h-[320px] sm:h-[480px] md:h-[650px] object-cover transition-transform duration-300 hover:scale-105"
         />
@@ -250,6 +250,14 @@
 <script setup>
   import working1 from '../assets/images/about-1.jpeg';
   import working2 from '../assets/images/about-2.jpg';
+
+  import abt1 from '../assets/images/about1.jpg';
+  import abt2 from '../assets/images/about2.jpg';
+  import abt3 from '../assets/images/about3.jpg';
+  import abt4 from '../assets/images/wspce2.jpg';
+
+  import abt5 from '../assets/images/about4.jpg';
+
   import GridBackground from '@/components/ui/GridBackground.vue';
   import { ref } from 'vue'
   const expanded = ref(false)
