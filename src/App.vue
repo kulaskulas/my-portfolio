@@ -47,9 +47,11 @@
             <a
               href="https://mail.google.com/mail/?view=cm&fs=1&to=karlcabangon24@email.com"
               target="_blank"
-              class="text-orchid font-medium cursor-pointer hover:underline"
+              rel="noopener noreferrer"
+              class="inline-flex items-center gap-2 cursor-pointer font-medium text-orchid transition-colors hover:underline"
             >
-              Open to Opportunities
+              <Icon icon="mdi:email-outline" class="text-lg" />
+              <span>Send me an email</span>
             </a>
           </div>
         </footer>
@@ -63,6 +65,7 @@
   import TopBar from './components/layouts/TopBar.vue';
   import SideBar from './components/layouts/SideBar.vue';
   import Header from './components/layouts/Header.vue';
+  import { Icon } from '@iconify/vue';
   import { useRoute } from 'vue-router'
   import { watch } from 'vue';
   import { usePageStore } from './stores';
