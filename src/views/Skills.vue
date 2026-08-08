@@ -81,7 +81,7 @@
 
 
 <script setup>
- import GridBackground from '@/components/ui/GridBackground.vue';
+  import GridBackground from '@/components/ui/GridBackground.vue';
   import { ref } from 'vue'
   import { Icon } from '@iconify/vue';
 
@@ -229,6 +229,12 @@
     bg_color: '#21759B',
     title: 'WordPress',
     description: 'CMS Development'
+  },
+  {
+    icon: 'logos:docker-icon',
+    bg_color: '#2496ED',
+    title: 'Docker',
+    description: 'Containerization'
   }
 ]
 
