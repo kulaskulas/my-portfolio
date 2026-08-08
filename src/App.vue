@@ -59,6 +59,7 @@
 
     </div>
   </div>
+  <Analytics />
 </template>
 
 <script setup>
@@ -66,6 +67,7 @@
   import SideBar from './components/layouts/SideBar.vue';
   import Header from './components/layouts/Header.vue';
   import { Icon } from '@iconify/vue';
+  import { Analytics } from '@vercel/analytics/vue';
   import { useRoute } from 'vue-router'
   import { watch } from 'vue';
   import { usePageStore } from './stores';
